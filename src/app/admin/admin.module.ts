@@ -16,13 +16,15 @@ import {AdminComponent} from './admin/admin.component';
 
 import PageNotFound from './page-not-found.component';
 import FlashMsgComponent from './flash-msg.component';
+import { UserAddComponent } from './user/user-add/user-add.component';
 
 
 @NgModule({
   declarations: [ 
     AdminComponentnent,
     FlashMsgComponent,
-    PageNotFound
+    PageNotFound,
+    UserAddComponent
   ],
   imports: [
     BrowserModule,
