@@ -12,6 +12,8 @@ import { AppComponent } from './app.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {LoginComponent} from './login/login.component';
 import {AdminComponent} from './admin/admin.component';
+import SecretariatComponent from './secretariat/secretariat.component';
+import SecretariatService from './secretariat/secretariat.service';
 
 
 import PageNotFound from './page-not-found.component';
@@ -23,6 +25,8 @@ import FlashMsgComponent from './flash-msg.component';
     AppComponent,
     NavbarComponent,
     LoginComponent,
+    SecretariatComponent,
+    SecretariatService,
     FlashMsgComponent,
     PageNotFound
   ],
