@@ -4,39 +4,33 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Router } from '@angular/router';
 
-import { routing } from './app-routing.module';
-import { AuthGuard } from './services/auth-guard.service';
+import { routing } from './admin-routing.module';
+import { GeslogService } from '../services/geslog-api.service'
+
+import { AdminComponent } from './admin.component';
 
 
-import { AppComponent } from './app.component';
-import {NavbarComponent} from './navbar/navbar.component';
-import {LoginComponent} from './login/login.component';
-import {AdminComponent} from './admin/admin.component';
-
-
-import PageNotFound from './page-not-found.component';
-import FlashMsgComponent from './flash-msg.component';
+import PageNotFound from '../page-not-found.component';
+import FlashMsgComponent from '../flash-msg.component';
 
 
 @NgModule({
-  declarations: [ 
-    AdminComponentnent,
-    FlashMsgComponent,
-    PageNotFound
-  ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     routing
   ],
-  providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  declarations: [
+    AdminComponent,
+    FlashMsgComponent,
+    PageNotFound
+  ],
+  providers: [GeslogService]
 })
 export class AdminModule {
   // Diagnostic only: inspect router configuration
   constructor(router: Router) {
-    console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+    console.log('Routes for Admin: ', JSON.stringify(router.config, undefined, 2));
   }
 }
- 

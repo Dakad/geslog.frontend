@@ -10,10 +10,21 @@ import PageNotFoundComponent from './page-not-found.component';
 import FlashMsgComponent from './flash-msg.component';
 
 const routes: Routes = [
-{ path: 'msg', component: FlashMsgComponent, outlet: 'flashMsg' },
-{ path: '', component: LoginComponent }
-,
-{ path: '**', component: PageNotFoundComponent }
+  { path: 'msg', component: FlashMsgComponent, outlet: 'flashMsg' },
+  { path: '', component: LoginComponent },
+  {
+    path: 'admin',
+    loadChildren: 'app/admin/admin.module#AdminModule',
+    canLoad: [AuthGuard]
+  },
+    {
+    path: 'secretat',
+    loadChildren: 'app/secretariat/secretariat.module#SecretariatModule',
+    canLoad: [AuthGuard]
+  },
+
+
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
