@@ -9,7 +9,6 @@ import AuthService from '../services/auth.service';
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
-<<<<<<< HEAD
   private _router: Router;
   data = { "username": "", "password": "", "matricule": "", "type": "" };
 
