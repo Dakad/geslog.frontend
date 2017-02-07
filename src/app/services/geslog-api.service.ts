@@ -8,17 +8,30 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GeslogService {
-    protected url: string = 'http://adress.to/api';
+    protected _urlToApi: string = 'http://adress.to/api';
 
 
-    constructor(protected _head: Headers, protected _http: Http, protected _opts: RequestOptions) {
-        this._head.append('Content-Type', 'application/json');
-        this._head.append('x-ClientId', 'xxxxxxxxxx');
-        this._head.append('x-ClientSecret', 'xxx-xxxxxx-x');
-        this._opts.headers = _head;
-
+    constructor(/*protected _head: Headers,*/ protected _http: Http, protected _opts: RequestOptions) {
+        // this._head.append('Content-Type', 'application/json');
+        // this._head.append('x-ClientId', 'xxxxxxxxxx');
+        // this._head.append('x-ClientSecret', 'xxx-xxxxxx-x');
+        // this._opts.headers = _head;
 
     }
+
+
+    /**
+     * Allow the std to get his logins
+     */
+    public getStudLogins() {
+        const matricule = localStorage.getItem('matricule');
+        return this._http.get(`${this._urlToApi}/logins/${matricule}`).map(res => res.json());
+    }
+
+
+
+
+
 
 
 

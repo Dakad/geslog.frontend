@@ -5,15 +5,12 @@ import App from '../../../dto/app';
 
 
 @Component({
-  selector: 'app-profil-add',
-  templateUrl: './profil-add.component.html',
-  styleUrls: ['./profil-add.component.css']
+  selector: 'app-profil-list',
+  templateUrl: './profil-list.component.html',
+  styleUrls: ['./profil-list.component.css']
 })
-export class ProfilAddComponent extends OnInit {
-
-  private profil: Profil;
-  private listApps: App[];
-
+export class ProfilListComponent extends OnInit {
+  private profils: Profil[];
 
   constructor() {
     super();
