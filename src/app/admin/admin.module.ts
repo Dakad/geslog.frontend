@@ -20,9 +20,7 @@ import FlashMsgComponent from './flash-msg.component';
 
 @NgModule({
   declarations: [ 
-    AppComponent,
-    NavbarComponent,
-    LoginComponent,
+    AdminComponentnent,
     FlashMsgComponent,
     PageNotFound
   ],
@@ -35,7 +33,7 @@ import FlashMsgComponent from './flash-msg.component';
   providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule {
+export class AdminModule {
   // Diagnostic only: inspect router configuration
   constructor(router: Router) {
     console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
