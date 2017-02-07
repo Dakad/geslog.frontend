@@ -5,15 +5,18 @@ import { CanDeactivateGuard } from './services/can-deactivate-guard.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 
-import {LoginComponent} from './login/login.component';
+import { LoginComponent } from './login/login.component';
 import PageNotFoundComponent from './page-not-found.component';
 import FlashMsgComponent from './flash-msg.component';
 
 const routes: Routes = [
   { path: 'msg', component: FlashMsgComponent, outlet: 'flashMsg' },
-  { path: '',children :[
-    {path:'login', component:LoginComponent}
-  ] },
+  {
+    path: '', children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent }
+    ]
+  },
 
 
 

@@ -18,7 +18,7 @@ import FlashMsgComponent from './flash-msg.component';
 
 
 @NgModule({
-  declarations: [
+  declarations: [ 
     AppComponent,
     NavbarComponent,
     LoginComponent,
@@ -40,3 +40,4 @@ export class AppModule {
     console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
   }
 }
+ 
