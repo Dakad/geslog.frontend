@@ -10,17 +10,10 @@ import PageNotFoundComponent from './page-not-found.component';
 import FlashMsgComponent from './flash-msg.component';
 
 const routes: Routes = [
-  { path: 'msg', component: FlashMsgComponent, outlet: 'flashMsg' },
-  {
-    path: '', children: [
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: 'login', component: LoginComponent, outlet: 'login' }
-    ]
-  },
- 
-
-
-  { path: '**', component: PageNotFoundComponent }
+{ path: 'msg', component: FlashMsgComponent, outlet: 'flashMsg' },
+{ path: '', component: LoginComponent }
+,
+{ path: '**', component: PageNotFoundComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
