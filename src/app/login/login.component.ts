@@ -8,16 +8,28 @@ import { Http }       from '@angular/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-	data = {"username":"" , "password":""};
+	data = {"username":"" , "password":"" ,"matricule":"" , "connectionType":""};
 	 constructor(private router: Router) {}
 	private _router: Router;
 	formSubmit(){
-		console.log("lol: " + this.data.username);
-		if(this.data.username == "admin" && this.data.password == "admin"){
-			this.router.navigate(['/admin']);
-		}else{
-			alert("Who are you ? ");
-		}
+		console.log("lol: " + this.data);
+		  switch (this.data.connectionType) {
+            case "Etudiant" :
+                if(this.data.matricule == "etudiant")
+            		this.router.navigate(['/etudiant'],this.data.matricule);
+                break;
+            case  "Admin" :
+            	console.log("In Admin ");
+                if(this.data.password == "admin")
+					this.router.navigate(['/admin']);
+                break;
+            case "Secretaire":
+            	if(this.data.password == "secretaire")
+            		this.router.navigate(['/secretaire'],this.data.username);
+            	break;
+            default:
+
+        }
 	}	
 
  
