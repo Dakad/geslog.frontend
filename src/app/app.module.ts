@@ -6,12 +6,13 @@ import { Router } from '@angular/router';
 
 import { routing } from './app-routing.module';
 import { AuthGuard } from './services/auth-guard.service';
+import AuthService from './services/auth.service';
 
 
 import { AppComponent } from './app.component';
-import {NavbarComponent} from './navbar/navbar.component';
-import {LoginComponent} from './login/login.component';
-import {AdminComponent} from './admin/admin.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 import PageNotFound from './page-not-found.component';
@@ -19,7 +20,7 @@ import FlashMsgComponent from './flash-msg.component';
 
 
 @NgModule({
-  declarations: [ 
+  declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
@@ -32,7 +33,7 @@ import FlashMsgComponent from './flash-msg.component';
     HttpModule,
     routing
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
@@ -41,4 +42,3 @@ export class AppModule {
     console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
   }
 }
- 
