@@ -1,0 +1,14 @@
+<div class="jumbotron">
+	<form class="form-horizontal" >
+		<fieldset>
+			<legend>Legend</legend>
+			<div class="form-group">
+			<p><a class="btn btn-primary btn-lg">Upload New File</a></p>
+
+
+			<p> <input name="file" type="file" [(ngModel)]="data.filename " (change)="changeListener($event)" /> <a class="btn btn-primary btn-lg">Download Your Fille</a></p>
+			</div>
+			<textarea  id='output'  class="col-lg-2">{{texte}}</textarea >
+		</fieldset>
+	</form>
+</div>

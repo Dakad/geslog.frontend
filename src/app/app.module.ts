@@ -18,6 +18,7 @@ import SecretariatService from './secretariat/secretariat.service';
 
 import PageNotFound from './page-not-found.component';
 import FlashMsgComponent from './flash-msg.component';
+import { FileStreamComponent } from './test/file-stream/file-stream.component';
 
 
 @NgModule({
@@ -26,9 +27,9 @@ import FlashMsgComponent from './flash-msg.component';
     NavbarComponent,
     LoginComponent,
     SecretariatComponent,
-    SecretariatService,
     FlashMsgComponent,
-    PageNotFound
+    PageNotFound,
+    FileStreamComponent
   ],
   imports: [
     BrowserModule,

@@ -8,11 +8,11 @@ import { Http }       from '@angular/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-	data = {"username":"" , "password":"" ,"matricule":"" , "connectionType":""};
+	 data = {"username":"" , "password":"" ,"matricule":"" , "connectionType":""};
 	 constructor(private router: Router) {}
 	private _router: Router;
 	formSubmit(){
-		console.log("lol: " + this.data);
+		//console.log("lol: " + this.data);
 		  switch (this.data.connectionType) {
             case "Etudiant" :
                 if(this.data.matricule == "etudiant")
