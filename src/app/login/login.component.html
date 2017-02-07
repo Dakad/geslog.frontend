@@ -1,25 +1,52 @@
-<div class="col-md-push-5">
-	<div class="well bs-component">
-		<form class="form-horizontal" (ngSubmit)="formSubmit()">
-		  <fieldset>
-		    <legend>Legend</legend>
-		    <div class="form-group">
-		      <label for="uname" class="col-lg-2 control-label">Username:</label>
-		      <div class="col-lg-10">
-		        <input type="text" class="form-control" id="uname"  name="uname" [(ngModel)]="data.username">
-		      </div>
-		      <label for="pwd" class="col-lg-2 control-label">Password:</label>
-		      <div class="col-lg-10">
-		        <input type="password" class="form-control" id="pwd" name="pwd"  [(ngModel)]="data.password">
-		      </div>
-		    </div>
-		    <div class="form-group">
-		      <div class="col-lg-10 col-lg-offset-2">
-		        <button type="submit" class="btn btn-primary">Login</button>
-		        <a class="btn btn-primary">Sing-Up</a>
-		      </div>
-		    </div>
-		  </fieldset>
-		</form>
+<div class="jumbotron">
+	<div class="col-md-push-5">
+		<div class="well bs-component">
+			<form class="form-horizontal" (ngSubmit)="formSubmit()">
+				<fieldset>
+				<legend>Connexion</legend>
+					<div class="form-group">
+						<label for="choix" class="col-lg-2 control-label">Type d'utilisateur:</label>
+						<div class="col-lg-10">
+							<select class="form-control" id="choix" name="cType" [(ngModel)]="data.connectionType">
+								<option selected="selected">Etudiant</option>
+								<option>Admin</option>
+								<option>Secretaire</option>
+							</select>
+							<br>
+						</div>
+					</div>
+					<div class="form-group">
+						<div *ngIf="data.connectionType == 'Admin'">
+							<label for="pwd" class="col-lg-2 control-label">Password:</label>
+							<div class="col-lg-10">
+								<input type="password" class="form-control" id="pwd" name="pwd"  [(ngModel)]="data.password">
+							</div>
+						</div>
+						<div *ngIf="data.connectionType == 'Etudiant'">
+							<label for="matric" class="col-lg-2 control-label">Matricule:</label>
+							<div class="col-lg-10">
+								<input type="test" class="form-control" id="matric" name="matric"  [(ngModel)]="data.matricule">
+							</div>
+						</div>
+						<div *ngIf="data.connectionType == 'Secretaire'">
+							<label for="uname" class="col-lg-2 control-label">Username:</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="uname"  name="uname" [(ngModel)]="data.username">
+							</div>
+							<label for="pwd" class="col-lg-2 control-label">Password:</label>
+							<div class="col-lg-10">
+								<input type="password" class="form-control" id="pwd" name="pwd"  [(ngModel)]="data.password">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-lg-10 col-lg-offset-2">
+							<button type="submit" class="btn btn-primary">Login</button>
+							<a class="btn btn-primary">Sing-Up</a>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
 	</div>
 </div>

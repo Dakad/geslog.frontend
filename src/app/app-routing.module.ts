@@ -9,6 +9,7 @@ import { AdminComponent } from './admin/admin.component';
 const routes: Routes = [
   {
     path: '',
+    component : LoginComponent,
     children: []
   },
   { path: 'admin' , component: AdminComponent }
