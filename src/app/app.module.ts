@@ -10,17 +10,13 @@ import AuthService from './services/auth.service';
 
 
 import { AppComponent } from './app.component';
-<<<<<<< HEAD
-import { NavbarComponent } from './navbar/navbar.component';
-import { LoginComponent } from './login/login.component';
-import { AdminComponent } from './admin/admin.component';
-=======
+
 import {NavbarComponent} from './navbar/navbar.component';
 import {LoginComponent} from './login/login.component';
 import {AdminComponent} from './admin/admin.component';
 import SecretariatComponent from './secretariat/secretariat.component';
 import SecretariatService from './secretariat/secretariat.service';
->>>>>>> 91d62ef68694ebeb214728e6f75de919f93d6775
+
 
 
 import PageNotFound from './page-not-found.component';
