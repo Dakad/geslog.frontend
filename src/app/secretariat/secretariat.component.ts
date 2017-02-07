@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import SecretariatService from '../secretariat/secretariat.service';
 
 @Component({
     moduleId: module.id,
@@ -9,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 export default class SecretariatComponent implements OnInit {
     private inputFile;
     
-    constructor() { }
+    constructor(
+       private secretariatService: SecretariatService) {
+    }
 
-    ngOnInit() { }
+    ngOnInit(): void {
+       /** this.secretariatService.getSecretaire(+params['username']))
+          .subscribe(hero => this.hero = hero);*/ ;
+    }
 
     /**
      * Sendd users.csv to API

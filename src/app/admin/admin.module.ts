@@ -12,6 +12,7 @@ import { AdminComponent } from './admin.component';
 
 import PageNotFound from '../page-not-found.component';
 import FlashMsgComponent from '../flash-msg.component';
+import { UserAddComponent } from './user/user-add/user-add.component';
 
 
 @NgModule({
@@ -22,8 +23,8 @@ import FlashMsgComponent from '../flash-msg.component';
     routing
   ],
   declarations: [
-    AdminComponent,
     FlashMsgComponent,
+    UserAddComponent,
     PageNotFound
   ],
   providers: [GeslogService]

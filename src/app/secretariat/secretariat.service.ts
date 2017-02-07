@@ -14,4 +14,9 @@ export default class SecretariatService extends GeslogService {
     sendUserCSV() {
 
     }
+
+    //getSecretaire(username: string): Promise<Hero> {
+   		
+  
+
 }
