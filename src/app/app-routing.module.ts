@@ -1,22 +1,23 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { LoginComponent } from './login/login.component';
-import { AdminComponent } from './admin/admin.component';
+import { CanDeactivateGuard } from './services/can-deactivate-guard.service';
+import { AuthGuard } from './services/auth-guard.service';
+import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
+
+import {LoginComponent} from './login/login.component';
+import PageNotFoundComponent from './page-not-found.component';
+import FlashMsgComponent from './flash-msg.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    children: []
-  },
-  { path: 'admin' , component: AdminComponent }
+  { path: 'msg', component: FlashMsgComponent, outlet: 'flashMsg' },
+  { path: '',children :[
+    {path:'login', component:LoginComponent}
+  ] },
+
+
+
+  { path: '**', component: PageNotFoundComponent }
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-  providers: []
-})
-export class AppRoutingModule { }
+export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
