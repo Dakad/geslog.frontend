@@ -1,7 +1,9 @@
 {
     "data": {
-        "token": "user-token"
+        "token": "user-token",
+        "type": "admin"
     },
-    "type": "stud"
+
+    "status": 200
 
 }

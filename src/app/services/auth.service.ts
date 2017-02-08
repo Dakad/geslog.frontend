@@ -13,14 +13,14 @@ export default class AuthService {
   private _apiUrl: string = 'app/mocks/api-user-connect-res.json';
 
 
-  constructor(/*private _headers: Headers,*/ private _http: Http) { }
+  constructor(private _http: Http) { }
 
   public login(inputData): Observable<any> {
     return this._http.get(this._apiUrl)
       .map(res => {
-        const data = res.json();
+        const data = res.json().data;
         localStorage.setItem('token', data.token);
-        localStorage.setItem('type', data.token);
+        localStorage.setItem('type', data.type);
         return data;
       });
   }

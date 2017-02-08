@@ -1,12 +1,12 @@
 
-import App from './app';
+import Appli from './appli';
 
 export default class Profil {
     private _id: number;
     private _year: string;
     private _section: string;
 
-    private _apps: App[];
+    private _apps: Appli[];
 
 
     constructor(year: string, sect: string, id?: number) {
@@ -24,13 +24,13 @@ export default class Profil {
     }
 
 
-    public get apps(): App[] {
+    public get apps(): Appli[] {
         return this._apps;
     }
     /**
      * addApp
      */
-    public addApp(app: App) {
+    public addApp(app: Appli) {
         this._apps.push(app);
     }
 

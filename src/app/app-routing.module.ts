@@ -13,6 +13,7 @@ import { FileStreamComponent } from './test/file-stream/file-stream.component';
 const routes: Routes = [
   { path: 'msg', component: FlashMsgComponent, outlet: 'flashMsg' },
   { path: '', component: LoginComponent },
+  { path: 'logout', redirectTo: '' },
   {
     path: 'admin',
     loadChildren: 'app/admin/admin.module#AdminModule',
@@ -29,4 +30,6 @@ const routes: Routes = [
   { path: '**', component: PageNotFoundComponent }
 ];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
+export const routing: ModuleWithProviders = RouterModule.forRoot(routes,
+  { preloadingStrategy: SelectivePreloadingStrategy }
+);

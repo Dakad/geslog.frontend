@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
     this._authService.login(this.data).subscribe((user) => {
       if (!this._authService.isLogged)
         return;
+      console.log(user);
       this.router.navigate(['/' + user.type]);
     });
 
