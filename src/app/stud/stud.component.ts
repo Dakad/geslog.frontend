@@ -1,12 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 
+import { GeslogService } from '../services/geslog-api.service';
+
+
 @Component({
   moduleId: module.id,
   selector: 'app-stud',
-  templateUrl: 'stud.component.html'
+  templateUrl: 'stud.component.html',
+
 })
 export class StudComponent implements OnInit {
-  constructor() { }
 
-  ngOnInit() { }
+  private logins: any[];
+
+  constructor(private _geslog: GeslogService) { }
+
+  ngOnInit() {
+    this._geslog.getStudLogins().subscribe(logins => this.logins = logins);;
+  }
+
+
+
+  download() {
+
+  }
+
+
 }
