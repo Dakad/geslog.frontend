@@ -21,5 +21,12 @@ export class GeslogAdminService extends GeslogService {
         return this._http.get(url).map(res => res.json().data);
     }
 
+    /**
+    * UserList
+    */
+     public listUsers() {
+        const url = 'app/mocks/api-users-list-res.json';
+        return this._http.get(url).map(res => res.json().data);
+    }
 
 }

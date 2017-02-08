@@ -17,7 +17,7 @@ export class UserComponent implements OnInit {
 	constructor(private _geslog: GeslogAdminService) { }
 
     ngOnInit() {
-        this._geslog.listApplis().subscribe(data => this.users = data);
+        this._geslog.listUsers().subscribe(data => this.users = data);
     }
 
     onUpsert(event: User) {
