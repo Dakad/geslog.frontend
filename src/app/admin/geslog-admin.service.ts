@@ -6,7 +6,7 @@ import { GeslogService } from '../services/geslog-api.service';
 @Injectable()
 export class GeslogAdminService extends GeslogService {
 
-    private
+    
 
     constructor(protected _http: Http, protected _opts: RequestOptions) {
         super(_http, _opts);

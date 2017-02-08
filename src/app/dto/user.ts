@@ -1,22 +1,26 @@
 
 import Appli from './appli';
-
-export default class User {
-    private _apps: Appli[];
+import Profil from './profil';
 
 
-    private _fristName:string;
-    private _name:string;
-    private _orientation:string;
-    private _email:string;
-    private _matricule:string;
-    private _type:string;
-    private _login:string;
-    private _idProfile:number;
-    private _checked:boolean = false;
+export enum UserType{
+    STUD, PROF,GUEST
+}
+
+
+export class User {
+    private _firstName: string;
+    private _name: string;
+    private _orientation: string;
+    private _email: string;
+    private _matricule: string;
+    private _type: string;
+    private _login: string;
+    private _profil: Profil;
+    private _checked: boolean = false;
 
     constructor() {
-               this._apps = [];
+        this._checked = false;
     }
 
     /**
@@ -26,27 +30,16 @@ export default class User {
         return new User();
     }
 
-    public get apps(): Appli[] {
-        return this._apps;
+
+    public get firstName(): string {
+        return this._firstName;
     }
 
-    /**
-     * addApp
-     */
-    public addApp(app: Appli) {
-        this._apps.push(app);
+    public set firstName(v: string) {
+        this._firstName = v;
     }
 
-
-    public get fristName(): string {
-        return this._fristName;
-    }
-
-    public set fristName(v: string) {
-        this._fristName = v;
-    }
-
-    public get name() :string {
+    public get name(): string {
         return this._name;
     }
 
@@ -98,12 +91,12 @@ export default class User {
 
 
 
-    public get idProfile(): string {
-        return this._idProfile;
+    public get profil(): Profil {
+        return this._profil;
     }
 
-    public set idProfile(v: string) {
-        this._idProfile = v;
+    public set profil(v: Profil) {
+        this._profil = v;
     }
 
     public get checked(): boolean {
@@ -115,6 +108,6 @@ export default class User {
     }
 
 
-    
+
 
 }

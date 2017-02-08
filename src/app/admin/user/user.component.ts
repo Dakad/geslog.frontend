@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import User from '../../dto/user';
+import {User, UserType} from '../../dto/user';
 import Appli from '../../dto/appli';
 
 import { GeslogAdminService } from '../geslog-admin.service';
@@ -9,8 +9,6 @@ import { GeslogAdminService } from '../geslog-admin.service';
 	templateUrl: './user.component.html',
 	styleUrls: ['./user.component.css']
 })
-
-
 export class UserComponent implements OnInit {
 	private users: User[];
 	private selectedUser: User;
