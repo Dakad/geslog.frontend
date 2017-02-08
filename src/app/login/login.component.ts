@@ -10,7 +10,7 @@ import AuthService from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   private _router: Router;
-  data = { "username": "", "password": "", "matricule": "", "type": "" };
+  data = { "username": "", "password": "", "matricule": "", "type": "admin" };
 
   constructor(public _authService: AuthService, public router: Router) { }
 
@@ -18,11 +18,12 @@ export class LoginComponent implements OnInit {
     this._authService.login(this.data).subscribe((user) => {
       if (!this._authService.isLogged)
         return;
+      console.log(user);
       this.router.navigate(['/' + user.type]);
     });
 
   }
-  
+
   ngOnInit() {
   }
 

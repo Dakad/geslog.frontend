@@ -10,19 +10,19 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export default class AuthService {
   private _redirectUrl: string;
-  private _apiUrl : string = '../mocks/api-user-connect-res.json';
+  private _apiUrl: string = 'app/mocks/api-user-connect-res.json';
 
 
-  constructor(private _headers: Headers, private _http: Http) {  }
+  constructor(private _http: Http) { }
 
-  public login(inputData):Observable<any>{
+  public login(inputData): Observable<any> {
     return this._http.get(this._apiUrl)
-                .map(res => {
-                  const data = res.json();
-                  localStorage.setItem('token',data.token);
-                  localStorage.setItem('type',data.token);
-                  return data;
-                });
+      .map(res => {
+        const data = res.json().data;
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('type', data.type);
+        return data;
+      });
   }
 
   public logout(): void {

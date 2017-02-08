@@ -5,24 +5,15 @@ import { HttpModule } from '@angular/http';
 import { Router } from '@angular/router';
 
 import { routing } from './app-routing.module';
-import { AuthGuard } from './services/auth-guard.service';
+// import { AuthGuard } from './services/auth-guard.service';
+import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
+
 import AuthService from './services/auth.service';
 
 
 import { AppComponent } from './app.component';
-<<<<<<< HEAD
-import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
-=======
-import {NavbarComponent} from './navbar/navbar.component';
-import {LoginComponent} from './login/login.component';
-import {AdminComponent} from './admin/admin.component';
-import SecretariatComponent from './secretariat/secretariat.component';
-import SecretariatService from './secretariat/secretariat.service';
->>>>>>> 91d62ef68694ebeb214728e6f75de919f93d6775
-
-
 import PageNotFound from './page-not-found.component';
 import FlashMsgComponent from './flash-msg.component';
 import { FileStreamComponent } from './test/file-stream/file-stream.component';
@@ -31,7 +22,6 @@ import { FileStreamComponent } from './test/file-stream/file-stream.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     LoginComponent,
     FlashMsgComponent,
     PageNotFound,
@@ -43,12 +33,12 @@ import { FileStreamComponent } from './test/file-stream/file-stream.component';
     HttpModule,
     routing
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [AuthService, SelectivePreloadingStrategy],
   bootstrap: [AppComponent]
 })
 export class AppModule {
   // Diagnostic only: inspect router configuration
   constructor(router: Router) {
-    console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+    // console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
   }
 }

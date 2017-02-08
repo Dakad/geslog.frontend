@@ -1,20 +1,45 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CanDeactivateGuard } from './services/can-deactivate-guard.service';
-import { AuthGuard } from './services/auth-guard.service';
-import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
+// import { CanDeactivateGuard } from '../services/can-deactivate-guard.service';
+// import { AuthGuard } from '../services/auth-guard.service';
+// import { SelectivePreloadingStrategy } from '../selective-preloading-strategy';
 
-import PageNotFoundComponent from './page-not-found.component';
-import FlashMsgComponent from './flash-msg.component';
+import { ProfilComponent } from './profil/profil.component';
+import { AppliComponent } from './appli/appli.component';
+import { UserAddComponent } from './user/add/user-add.component';
 
-const routes: Routes = [
-  {
-    path: '', children: [
-      { path: '', redirectTo: 'admin', pathMatch: 'full' },
-      { path: 'admin', component: AdminComponent, outlet: 'admin' }
-    ]
-  }
+import { AdminComponent } from './admin.component';
+import { AdminDashboardComponent } from './admin-dashboard.component';
+
+
+
+const routes: Routes = [{
+  path: '', children: [
+    {
+      path: '', component: AdminComponent, children: [
+
+        { path: 'applis', component: AppliComponent },
+        { path: 'profils', component: ProfilComponent },
+        { path: 'users/add', component: UserAddComponent },
+        { path: '', component: AdminDashboardComponent },
+      ]
+    },
+
+    { path: '**', component: AdminComponent }
+  ],
+}, {
+  path: '**', component: AdminComponent
+}
+
 ];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
+@NgModule({
+  imports: [
+    RouterModule.forChild(routes)
+  ],
+  exports: [
+    RouterModule
+  ]
+})
+export class AdminRoutingModule { }
