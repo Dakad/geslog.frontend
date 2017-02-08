@@ -1,24 +1,14 @@
 <div class="main">
     <div class="container" style="margin-top: 75px">
         <div class="list-group">
-            <a href="#" class="list-group-item">
-                <h2 class="list-group-item-heading">App#1 Name</h2>
-                <h5>Login - App#1 password</h5>
+            <a href="#" class="list-group-item" *ngFor="let info of infos" >
+                <h2 class="list-group-item-heading">{{info.name}}</h2>
+                <h5>Password : {{info.password}}</h5>
             </a>
             <br>
-            <a href="#" class="list-group-item">
-                <h2 class="list-group-item-heading">App#2 Name</h2>
-                <h4>Login - App#1 password</h4>
-            </a>
         </div>
-
-
-        <button class="btn btn-success btn-lg pull-right" (click)="download()">
+         <a id="dll" [href]="href" class="btn btn-success btn-lg pull-right"  download="logins.txt">
             Telecharger
-        </button>
-
-
-
-
+        </a>
     </div>
 </div>

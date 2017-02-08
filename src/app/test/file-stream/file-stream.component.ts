@@ -44,7 +44,7 @@ export class FileStreamComponent implements OnInit {
       // you can perform an action with readed data here
       //console.log(myReader.result + "");
      var output = document.getElementById('output');
-      output.innerHTML  = myReader.result;
+      output.innerHTML  = myReader.Resultat;
        //document.getElementById('my_iframe').src = myReader.result;
     };
   //  myReader.readAsDataURL(file);
