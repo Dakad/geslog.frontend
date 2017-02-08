@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { GeslogService } from '../services/geslog-api.service';
 import {DomSanitizer} from '@angular/platform-browser';
+import {StanizerService} from '../stanizer.service';
 
 export class Information {
   name: string;
@@ -13,6 +14,7 @@ const INFOS : Information[] = [{  name : "TadaApp" ,  password : 'abc'}, {name: 
   moduleId: module.id,
   selector: 'app-stud',
   templateUrl: 'stud.component.html',
+    providers: [StanizerService]
 
 })
 export class StudComponent implements OnInit {
@@ -22,7 +24,7 @@ export class StudComponent implements OnInit {
   infos = INFOS;
   href;
   //private sanitizer:DomSanitizer;
-  constructor(private _geslog: GeslogService,private sanitizer:DomSanitizer) { }
+  constructor(private _geslog: GeslogService,private stanizerService: StanizerService) { }
 
   ngOnInit() {
     //this._geslog.getStudLogins().subscribe(logins => this.logins = logins);;
@@ -43,7 +45,7 @@ export class StudComponent implements OnInit {
     this.href = this.sanitize(uri);;
   } 
  sanitize(url:string){
-    return this.sanitizer.bypassSecurityTrustUrl(url);
+    return this.stanizerService.sanitize(url);
   }
 
 }

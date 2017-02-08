@@ -8,7 +8,10 @@
 
 			<p> <input type="file" [multiple]="multiple" (change)="upload2()" #fileInput> <a class="btn btn-primary btn-lg"  href="./bootstrap.css" download >Download Your Fille</a></p>
 			</div>
-			<textarea  id='output'  class="col-lg-2">{{progress}}</textarea >
+			<div class="progress progress-striped active">
+			  <div class="progress-bar" style="width: 0%">{{progress}}%</div>
+			</div>
+			<textarea  id='output'  class="col-lg-2">{{texte}}</textarea >
 			<iframe id="my_iframe" style="display:none;"></iframe>
 		</fieldset>
 	</form>

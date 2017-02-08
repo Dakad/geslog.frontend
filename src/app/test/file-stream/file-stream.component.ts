@@ -44,7 +44,7 @@ export class FileStreamComponent implements OnInit {
       // you can perform an action with readed data here
       //console.log(myReader.result + "");
      var output = document.getElementById('output');
-      output.innerHTML  = myReader.Resultat;
+      output.innerHTML  = myReader.result;
        //document.getElementById('my_iframe').src = myReader.result;
     };
   //  myReader.readAsDataURL(file);
@@ -100,7 +100,7 @@ export class FileStreamComponent implements OnInit {
             this.progressObserver.next(this.progress);
         };
 
-        xhr.open('POST', "/upload", true);
+        xhr.open('POST', "/users", true);
         xhr.send(formData);
         }).catch(this.handleError);
     }

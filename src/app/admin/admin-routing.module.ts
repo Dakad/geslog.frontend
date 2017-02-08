@@ -11,6 +11,8 @@ import { UserAddComponent } from './user/add/user-add.component';
 
 import { AdminComponent } from './admin.component';
 import { AdminDashboardComponent } from './admin-dashboard.component';
+import { UserComponent } from './user/user.component';
+
 
 
 
@@ -21,8 +23,9 @@ const routes: Routes = [{
 
         { path: 'applis', component: AppliComponent },
         { path: 'profils', component: ProfilComponent },
+        { path: 'users', component: UserComponent },
         { path: 'users/add', component: UserAddComponent },
-        { path: '', component: AdminDashboardComponent },
+        { path: '', component: AdminDashboardComponent }
       ]
     },
 
