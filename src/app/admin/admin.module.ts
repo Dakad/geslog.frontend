@@ -19,6 +19,8 @@ import { AppliAddComponent } from './appli/appli-add.component';
 import { AppliListComponent } from './appli/appli-list.component';
 
 import { UserAddComponent } from './user/add/user-add.component';
+import { UserComponent } from './user/user.component';
+import { UserListComponent } from './user/user-list/user-list.component';
 
 
 
@@ -36,7 +38,7 @@ import { UserAddComponent } from './user/add/user-add.component';
     AdminComponent, AdminDashboardComponent,
     ProfilComponent, ProfilAddComponent, ProfilListComponent,
     AppliComponent, AppliAddComponent, AppliListComponent,
-    UserAddComponent
+    UserAddComponent,UserComponent,UserListComponent
   ],
   providers: [GeslogAdminService],
 })

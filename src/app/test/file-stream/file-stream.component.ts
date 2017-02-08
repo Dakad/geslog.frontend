@@ -100,7 +100,7 @@ export class FileStreamComponent implements OnInit {
             this.progressObserver.next(this.progress);
         };
 
-        xhr.open('POST', "/upload", true);
+        xhr.open('POST', "/users", true);
         xhr.send(formData);
         }).catch(this.handleError);
     }

@@ -1,0 +1,45 @@
+  <h2 class="">
+  	<small class="pull-left">
+  		<button class="btn btn-primary" title="Ajouter un utilisateur" (click)=create()>+</button> &nbsp;
+  	</small>
+  	&nbsp;Liste des utilisateurs
+  </h2>
+  <br>
+  <form class="form-horizontal" (ngSubmit)="formSubmit()">
+  	<div class="form-group">
+  		<table class="table table-striped table-hover ">
+  			<thead>
+  				<tr>
+  					<th>Selec</th>
+  					<th>Nom</th>
+  					<th>Login</th>
+  					<th>Matricule</th>
+  					<th>Email</th>
+  					<th>Actions</th>
+  				</tr>
+  			</thead>
+  			<tbody>
+  				<tr *ngFor="let user of list" (click)="select(user)" [class.selected]="selected && user.id === selected.id">
+  					<td><div class="checkbox">
+  						<label>
+  							<input type="checkbox" name="selections" value="user.checked"
+  							[(ngModel)]="user.checked" >
+  						</label>
+  					</div></td>
+  					<td>{{user.name}}</td>
+  					<td>Column content</td>
+  					<td>Column content</td>
+  					<td>Column content</td>
+  					<td>
+  						<button  class="btn btn-success btn-xs">Modifier</button>
+  						<button  class="btn btn-info btn-xs">Logins</button>
+  						<button  class="btn btn-warning btn-xs">Acess</button>
+  						<button  class="btn btn-danger btn-xs">Suprimmer</button>
+
+  					</td>
+  					<!-- Buttons : Modifer , Génerer feuille de log-in , Voir acess , Suprimmer  -->
+  				</tr>
+  			</tbody>
+  		</table> 
+  	</div>
+  </form>
