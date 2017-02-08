@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+
 @Injectable()
 export class GeslogService implements OnInit {
     protected _urlToApi: string = 'http://adress.to/api';
@@ -31,7 +32,10 @@ export class GeslogService implements OnInit {
      */
     public getStudLogins(matricule?: number | string) {
         matricule = (!matricule) ? localStorage.getItem('userMatricule') : matricule;
-        return this._http.get(`${this._urlToApi}/logins/${matricule}`).map(res => res.json().data);
+        //return this._http.get(`${this._urlToApi}/logins/${matricule}`).map(res => res.json().data);
+        console.log("tentative");
+        return this._http.get('app/mocks/api-logins.json').map(res => res.json().data);
+       
     }
 
 

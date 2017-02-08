@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { GeslogAdminService } from './geslog-admin.service';
+import { GeslogService } from '../services/geslog-api.service';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { AdminComponent } from './admin.component';
@@ -40,6 +41,6 @@ import { UserListComponent } from './user/list/user-list.component';
     AppliComponent, AppliAddComponent, AppliListComponent,
     UserAddComponent,UserComponent,UserListComponent
   ],
-  providers: [GeslogAdminService],
+  providers: [GeslogAdminService,GeslogService],
 })
 export class AdminModule { }

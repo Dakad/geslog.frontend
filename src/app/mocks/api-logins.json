@@ -1,0 +1,23 @@
+{
+    "data": [{
+       
+            "name": "Windows",
+            "password": "lol"
+        },
+        {
+            "name": "Windows2",
+            "password": "lol2"
+
+        },
+        {
+             "name": "Windows3",
+            "password": "lol2"
+
+        }
+
+    ],
+
+    "status": 200
+
+
+}
