@@ -1,0 +1,8 @@
+{
+
+    "data": [
+        { "id": 123, "name": "Profil Test" }, { "id": 76, "name": "Profil Lorem" }, { "id": 92, "name": "Profil Wifi" }
+
+    ],
+    "status": 200
+}

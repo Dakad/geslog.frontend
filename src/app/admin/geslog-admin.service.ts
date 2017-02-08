@@ -22,4 +22,12 @@ export class GeslogAdminService extends GeslogService {
     }
 
 
+    /**
+     * listProfils
+     */
+    public listProfils() {
+        const url = 'app/mocks/api-profils-list-res.json';
+        return this._http.get(url).map(res => res.json().data);
+    }
+
 }

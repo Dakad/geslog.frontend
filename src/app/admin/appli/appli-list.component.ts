@@ -25,6 +25,7 @@ import Appli from '../../dto/appli';
 })
 export class AppliListComponent implements OnInit {
   @Input() private list: Appli[];
+  private selected : Appli;
   @Output('select') private selectRequest: EventEmitter<Appli>;
 
 
@@ -36,7 +37,8 @@ export class AppliListComponent implements OnInit {
 
 
   select(selected: Appli) {
-    this.selectRequest.emit(selected);
+    this.selected = selected;
+    this.selectRequest.emit(this.selected);
   }
 
   create() {

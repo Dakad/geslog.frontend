@@ -12,6 +12,10 @@ export default class Appli {
         this.id = id;
     }
 
+    public static extractFromData(raw:any){
+        return new Appli(raw.name,raw.format,raw.id);
+    }
+
     public get format(): string {
         return this._format;
     }

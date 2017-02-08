@@ -29,7 +29,8 @@ export class GeslogService implements OnInit {
     /**
      * Allow the std to get his logins
      */
-    public getStudLogins(matricule: number | string) {
+    public getStudLogins(matricule?: number | string) {
+        matricule = (!matricule) ? localStorage.getItem('userMatricule') : matricule;
         return this._http.get(`${this._urlToApi}/logins/${matricule}`).map(res => res.json().data);
     }
 

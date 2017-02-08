@@ -21,6 +21,9 @@ export default class AuthService {
         const data = res.json().data;
         localStorage.setItem('token', data.token);
         localStorage.setItem('type', data.type);
+        if (data.type === 'stud') {
+          localStorage.setItem('studMatricule', data.Matricule);
+        }
         return data;
       });
   }
