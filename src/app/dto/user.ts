@@ -3,8 +3,11 @@ import Appli from './appli';
 import Profil from './profil';
 
 
-export enum UserType{
-    STUD, PROF,GUEST 
+export const UserType = {
+    ADMIN : 'Admin',
+    STUD: 'Etudiant',
+    PROF: 'PRofesseur',
+    GUEST: 'Invité'
 }
 
 
@@ -20,8 +23,8 @@ export class User {
     private _idProfile: number;
     private _checked: boolean = false;
 
-    constructor(firstname?:string ,name?:string, orientation?:string,email?:string , matricule?: string , type?:string , 
-        login?:string ,  idProfile?:number) {
+    constructor(firstname?: string, name?: string, orientation?: string, email?: string, matricule?: string, type?: string,
+        login?: string, idProfile?: number) {
         this._checked = false;
         this._firstname = firstname;
         this._name = name;
@@ -30,7 +33,6 @@ export class User {
         this._matricule = matricule;
         this._type = type;
         this._login = login;
-       // this._profil = profil;
         this._idProfile = idProfile;
     }
 
@@ -39,7 +41,7 @@ export class User {
      */
     static extractFromRawData(raw: any): User {
         //console.log("test : " + raw.name + " :  " + raw.matricule );
-        const user:User =  new User(raw.firstname,raw.name,raw.orientation , raw.email , raw.matricule , raw.type , raw.login , raw.idProfile) ;
+        const user: User = new User(raw.firstname, raw.name, raw.orientation, raw.email, raw.matricule, raw.type, raw.login, raw.idProfile);
         return user;
     }
 
@@ -112,7 +114,7 @@ export class User {
         this._profil = v;
     }
 
-     public get idProfile(): number {
+    public get idProfile(): number {
         return this._idProfile;
     }
 
@@ -120,7 +122,7 @@ export class User {
         this._idProfile = v;
     }
 
-    public setProfil(v:Profil){
+    public setProfil(v: Profil) {
         this._profil = v;
     }
     public get checked(): boolean {

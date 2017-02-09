@@ -2,20 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 
 import AuthService from '../services/auth.service';
-
+import { User, UserType } from '../dto/user';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
-  private _router: Router;
-  data = { "username": "", "password": "", "matricule": "", "type": "admin" };
+  private types = UserType;
+  private data = { "username": "", "password": "", "matricule": "", "type": UserType.ADMIN };
 
   constructor(public _authService: AuthService, public router: Router) { }
 
-  ngOnInit(){
-    if(this._authService.isLogged){
+  ngOnInit() {
+    if (this._authService.isLogged) {
       this.router.navigateByUrl(this._authService.type);
     }
   }
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       if (!this._authService.isLogged)
         return;
       console.log(user);
-      if(user.type === 'STUD')
+      if (user.type === 'STUD')
         user.type += `/${user.matricule}`;
       this.router.navigate(['/' + user.type]);
     });
