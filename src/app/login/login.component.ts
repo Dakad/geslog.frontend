@@ -14,17 +14,23 @@ export class LoginComponent implements OnInit {
 
   constructor(public _authService: AuthService, public router: Router) { }
 
+  ngOnInit(){
+    if(this._authService.isLogged){
+      this.router.navigateByUrl(this._authService.type);
+    }
+  }
+
   formSubmit() {
     this._authService.login(this.data).subscribe((user) => {
       if (!this._authService.isLogged)
         return;
       console.log(user);
+      if(user.type === 'STUD')
+        user.type += `/${user.matricule}`;
       this.router.navigate(['/' + user.type]);
     });
 
   }
 
-  ngOnInit() {
-  }
 
 };

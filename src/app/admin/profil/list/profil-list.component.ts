@@ -8,7 +8,9 @@ import Profil from '../../../dto/profil';
   template: ` 
     <h2 class="">
       <small class="pull-left">
-        <button class="btn btn-primary" title="Ajouter un profil" (click)=create()>+</button> &nbsp;
+        <button class="btn btn-primary" title="Ajouter un profil" (click)=create()>
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
       </small>
        &nbsp;Liste des profils
     </h2>
@@ -25,6 +27,8 @@ import Profil from '../../../dto/profil';
 })
 export class ProfilListComponent implements OnInit {
   @Input() private list: Profil[];
+
+  @Input() private mode:string;
   private selected: Profil;
   @Output('select') private selectRequest: EventEmitter<Profil>;
 

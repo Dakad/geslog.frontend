@@ -6,6 +6,7 @@ import { StudComponent } from './stud.component';
 
 const routes: Routes = [
     { path: '', component: StudComponent },
+    { path: '/:matricule', component: StudComponent },
     { path: '**', component: StudComponent }
 ];
 
