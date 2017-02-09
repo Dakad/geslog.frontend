@@ -40,6 +40,10 @@ export default class AuthService {
     return localStorage.getItem('token') !== null;
   }
 
+  public get type():string{
+    return localStorage.getItem('type');
+  }
+
 
   public get redirectUrl(): string {
     return this._redirectUrl;

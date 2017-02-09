@@ -19,6 +19,7 @@ export class Information {
 
 export class UserListComponent implements OnInit {
   @Input() private list: User[];
+  @Input() private mode:string;
   // @Output() private selected: User;
   @Output('select') private selectRequest: EventEmitter<User>;
   @Output('selectAction') private selectedAction: EventEmitter<string>;
@@ -48,6 +49,11 @@ export class UserListComponent implements OnInit {
   create() {
     this.selectAction("modifier");
   }
+
+  upload(){
+    console.log('Missing the upload function');
+  }
+
   checkAll(event){
     for(let i=0 ; i < this.list.length  ; i++)
         this.list[i].checked =event.target.checked;

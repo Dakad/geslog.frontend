@@ -92,5 +92,9 @@ export class GeslogAdminService extends GeslogService {
         // return this._http.get
     }
 
+    public getAppliById(id:number | string):Observable<Appli>{
+        return null;
+    }
+
 
 }

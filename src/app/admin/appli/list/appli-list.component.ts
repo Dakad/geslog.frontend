@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
 
+import { ActivatedRoute, Router } from '@angular/router';
+
 import Appli from '../../../dto/appli';
 
 @Component({
@@ -8,7 +10,9 @@ import Appli from '../../../dto/appli';
   template: `
     <h2 class="">
       <small class="pull-left">
-        <button class="btn btn-primary" title="Ajouter un logiciel" (click)=create()>+</button> &nbsp;
+        <button class="btn btn-primary" title="Ajouter un logiciel" (click)=create()>
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
       </small>
        &nbsp;Liste des logiciels
     </h2>
@@ -25,11 +29,12 @@ import Appli from '../../../dto/appli';
 })
 export class AppliListComponent implements OnInit {
   @Input() private list: Appli[];
+  @Input('mode') private mode: string;
   private selected: Appli;
   @Output('select') private selectRequest: EventEmitter<Appli>;
 
 
-  constructor() {
+  constructor(private _route:ActivatedRoute, private _router: Router) {
     this.selectRequest = new EventEmitter<Appli>();
   }
 
@@ -38,7 +43,12 @@ export class AppliListComponent implements OnInit {
 
   select(selected: Appli) {
     this.selected = selected;
-    this.selectRequest.emit(this.selected);
+      console.log(this.mode);
+    if (this.mode === 'link') {
+      this._router.navigate(['applis/', this.selected.id ],{ relativeTo: this._route });
+    } else {
+      this.selectRequest.emit(this.selected);
+    }
   }
 
   create() {

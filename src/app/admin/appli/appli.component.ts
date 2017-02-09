@@ -1,4 +1,9 @@
+import 'rxjs/add/operator/switchMap';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location }               from '@angular/common';
+
+import { Observable } from 'rxjs/Observable';
 
 import Appli from '../../dto/appli';
 
@@ -23,10 +28,22 @@ export class AppliComponent implements OnInit {
     private selectedApp: Appli;
 
 
-    constructor(private _geslog: GeslogAdminService) { }
+    constructor(
+        private _geslog: GeslogAdminService,
+        private route: ActivatedRoute,
+        private location: Location
+    ) { }
 
     ngOnInit() {
         this._geslog.listApplis().subscribe(data => this.apps = data);
+        console.log('daffds');
+        this.route.params
+                    .switchMap((params: Params) => {
+                        console.log(params);
+                        const paramId = +params['id'];
+                        return (params['id']) ? this._geslog.getAppliById(+params['id']) : Observable.of(null);
+                    })
+                    .subscribe(app => this.selectedApp = app);
     }
 
     onUpsert(event: Appli) {

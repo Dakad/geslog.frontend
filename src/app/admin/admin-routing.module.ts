@@ -22,6 +22,11 @@ const routes: Routes = [{
       path: '', component: AdminComponent, children: [
 
         { path: 'applis', component: AppliComponent },
+        { path: 'applis', children: [
+          { path: '', component: AppliComponent },
+          { path: '/:id', component: AppliComponent },
+          { path: '/add', component: AppliComponent },
+        ]},
         { path: 'profils', component: ProfilComponent },
         { path: 'users', component: UserComponent },
         { path: 'users/add', component: UserAddComponent },
