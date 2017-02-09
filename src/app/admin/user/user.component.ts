@@ -38,15 +38,12 @@ export class UserComponent implements OnInit {
         for(let i= 0 ; i < this.types.length ; i++){
             this.typesValues[this.types[i]]= UserType[ this.types[i] ] ;  
         }
-        
-        console.log(this.typesValues);
     }
 
     ngOnInit() {
         this._geslog.listUsers().subscribe(data => this.users = data);
         this.geslog.getStudLogins().subscribe(res => this.infos = res);
-        this._geslog.listProfils().subscribe(res => this.profils = res);
-        console.log("looo");              
+        this._geslog.listProfils().subscribe(res => this.profils = res);          
     }
 
     onUpsert(event: User) {
@@ -58,7 +55,6 @@ export class UserComponent implements OnInit {
         this.hasSelectedAnUser = true;
         this.selectedAction = "normal";
         this.isCreating = false; 
-        console.log(this.selectedUser);
     }
 
     onUpsertAction(action: string){
