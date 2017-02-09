@@ -98,8 +98,11 @@ export class UserComponent implements OnInit {
   }
   modifUser(){
   }
-  addUser(){
-        console.log(this.newUser);
+  addUser(user:User){
+   //     console.log(this.newUser);
+  }
+  removeUser(user:User){
+
   }
 
 }

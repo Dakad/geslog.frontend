@@ -14,6 +14,23 @@
         <h3 class="col-lg-3 control-label"> Login : {{selectedUser.login|| "?"}}</h3>
         <h3 class="col-lg-3 control-label"> Profile : {{selectedUser.profil.name|| "?"}}</h3>
     </div>
+    <div *ngIf="hasSelectedAnUser && selectedAction == 'suprimmer'" class="">
+        <h2 style="text-align: center">Supression de {{selectedUser.name || "Utilisateur Inconu"}}</h2>
+        <h3 class="col-lg-3 control-label"> <label> Prénom : {{selectedUser.firstname || "?"}} </label></h3>
+        <h3 *ngIf="selectedUser.orientation" class="col-lg-3 control-label"> Orientation : {{selectedUser.orientation}}</h3>
+        <h3 class="col-lg-3 control-label"> Email : {{selectedUser.email|| "?"}}</h3>
+        <h3 *ngIf="selectedUser.matricule" class="col-lg-3 control-label"> Matricule : {{selectedUser.matricule}}</h3>
+        <h3 class="col-lg-3 control-label"> Type : {{selectedUser.type|| "?"}}</h3>
+        <h3 class="col-lg-3 control-label"> Login : {{selectedUser.login|| "?"}}</h3>
+        <h3 class="col-lg-3 control-label"> Profile : {{selectedUser.profil.name|| "?"}}</h3>
+        <form class="form-horizontal" (ngSubmit)="removeUser(selectedUser)">
+        <div class="form-group">
+                <div class="col-lg-6 col-lg-offset-4">
+                    <button type="submit" class="btn btn-primary" name="suprimmer">Suprimmer</button>
+                </div>
+        </div>
+        </form>
+    </div>
     <div *ngIf="hasSelectedAnUser && selectedAction == 'logins'" class="container ">
         <h2 style="text-align: center">Logins de {{selectedUser.name || "Utilisateur Inconu"}}</h2>
         <span href="#" class="list-group-item" *ngFor="let info of getInfos(selectedUser)">
@@ -89,7 +106,7 @@
         </form>
     </div>
     <div *ngIf="!hasSelectedAnUser && isCreating && selectedAction == 'modifier'" class="">
-        <form class="form-horizontal" (ngSubmit)="addUser()">
+        <form class="form-horizontal" (ngSubmit)="addUser(newUser)">
             <h2 style="text-align: center">{{newUser.name || "Nouvel Utilisateur"}}</h2>
             <div class="form-group">
                 <label for="name" class="col-lg-4 control-label">Nom :</label>
