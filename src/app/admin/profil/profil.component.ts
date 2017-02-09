@@ -11,7 +11,7 @@ import { GeslogAdminService } from '../geslog-admin.service';
   template: `
     <div class="row">
       <div class="col-md-4">
-          <app-profil-list [list]="profils" (select)=onSelect($event) >
+          <app-profil-list [list]=profils (select)=onSelect($event) >
           </app-profil-list>
       </div>
       <div class="col-md-8">
@@ -25,7 +25,7 @@ export class ProfilComponent implements OnInit {
   private selectedProfil: Profil;
 
 
-  constructor(private _geslog:GeslogAdminService) { }
+  constructor(private _geslog: GeslogAdminService) { }
 
   ngOnInit() {
     // Creer une function dans les GesLogService pour recuperer tous les applications
@@ -33,19 +33,29 @@ export class ProfilComponent implements OnInit {
   }
 
 
-  onSelect(profil:Profil){
-    console
-    if(profil){
+  onSelect(profil: Profil) {
+    if (profil) {
+      console.log(typeof profil);
       // Go fecth all applications related to this selected profil
       // this._geslog.getProfilById(profil.id)
       //              .subscribe(data => this.selectedProfil = data);
-    }else{
-      this.selectedProfil = new Profil();
+      this._geslog.listApplis()
+        .subscribe(apps => {
+          apps.forEach((app) => profil.addApp(app));
+          this.selectedProfil = profil;
+        });
+    } else {
+      profil = new Profil();
+      this._geslog.listApplis()
+        .subscribe(apps => {
+          apps.forEach((app) => profil.addApp(app));
+          this.selectedProfil = profil;
+        });
     }
   }
 
 
-  onUpsert(profil:Profil){
+  onUpsert(profil: Profil) {
     console.log(profil);
     // this._geslog.upsert(profil);
   }

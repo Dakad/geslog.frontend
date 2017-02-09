@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
 
-import Appli from '../../dto/appli';
+import Appli from '../../../dto/appli';
 
 @Component({
   moduleId: module.id,
@@ -25,7 +25,7 @@ import Appli from '../../dto/appli';
 })
 export class AppliListComponent implements OnInit {
   @Input() private list: Appli[];
-  private selected : Appli;
+  private selected: Appli;
   @Output('select') private selectRequest: EventEmitter<Appli>;
 
 

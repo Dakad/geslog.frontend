@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 
-import Appli from '../../dto/appli';
+import Appli from '../../../dto/appli';
 
 @Component({
     moduleId: module.id,
@@ -24,7 +24,7 @@ import Appli from '../../dto/appli';
             <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-2">
                     <button type="reset" class="btn btn-default" (click)="currentAppli=null">Annuler</button>
-                    <button type="submit" class="btn btn-primary" (click)=upsert()>{{currentAppli.name ? "Modifier" : "Créer"}}</button>
+                    <button type="submit" class="btn btn-primary" (click)=upsert()>{{currentAppli.id ? "Modifier" : "Créer"}}</button>
                 </div>
                 </div>
         </fieldset>

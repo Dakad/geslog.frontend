@@ -16,22 +16,17 @@ export class GeslogService implements OnInit {
     }
 
     ngOnInit() {
-        this.getToken();
 
     }
 
-    private getToken() {
-        console.log('Get getToken')
-        this._http.post(`${this._urlToApi}/auth/`, {}, this._opts).map(res => res.json());
-    }
 
 
     /**
      * Allow the std to get his logins
      */
-    public getStudLogins(matricule?: number | string) {
+    public getStudLogins(matricule?: number | string): Observable<any[]> {
         matricule = (!matricule) ? localStorage.getItem('userMatricule') : matricule;
-        return this._http.get(`${this._urlToApi}/logins/${matricule}`).map(res => res.json().data);
+        return this._http.get(`${this._urlToApi}/logins/${matricule}`).map(this.extractData);
     }
 
 
@@ -46,7 +41,7 @@ export class GeslogService implements OnInit {
 
 
 
-    private extractData(res: Response) {
+    protected extractData(res: Response) {
         const body = res.json();
         return body.data || {};
     }

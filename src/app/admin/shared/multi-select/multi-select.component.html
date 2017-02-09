@@ -1,0 +1,28 @@
+<!--<div class="dropdown" id="select">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" (click)="$event.propagation = false">
+    Selectionner
+    <span class="caret"></span>
+  </button>
+    <ul class="dropdown-menu  dropdown-menu-form" aria-labelledby="dropdownMenu1">
+        <li>
+            <div class="dropdown-header">
+                <input type="text" class="form-control input-sm" id="select-search" placeholder="Filtrer ..." [(ngModel)]="searchFilter" (change)="updateOptions()" />
+            </div>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li><a><i class="fa fa-check"></i> Selectionner tout</a></li>
+        <li><a>Deselectionner tout</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a>Selection #1</a></li>
+        <li><a>Selection #2</a></li>
+    </ul>
+</div>-->
+
+<select multiple class="form-control" id="selectMulti" *ngIf="list">
+    <option *ngFor="let item of list" >{{item.login || item.name}}</option>
+
+</select>
+
+<p *ngIf="!list">
+    Aucun element à selectionner
+</p>
