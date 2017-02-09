@@ -1,7 +1,7 @@
 {
     "data": [{
-            "fristName": "balabla",
-            "name": "Windows",
+            "firstname": "balabla",
+            "name": "Jean",
             "orientation": "lol",
             "email" :  "sex.com",
             "matricule" :  "929273",
@@ -12,8 +12,8 @@
 
         },
         {
-            "fristName": "balabla",
-            "name": "Windows2",
+            "firstname": "balabla",
+            "name": "Paul",
             "orientation": "lol",
             "email" :  "sex.com",
             "matricule" :  "929273",
@@ -24,8 +24,8 @@
 
         },
         {
-            "fristName": "balabla",
-            "name": "Windows3",
+            "firstname": "balabla",
+            "name": "Zelda",
             "orientation": "lol",
             "email" :  "sex.com",
             "matricule" :  "929273",

@@ -1,5 +1,91 @@
 <div class="row">
-    <div class="col-md-5">
-        <app-user-list [list]="users" (select)=onUpsert($event) ></app-user-list>
-    </div>
+	<div class="col-md-5">
+		<app-user-list [list]="users" (select)=onUpsert($event)  (selectAction)=onUpsertAction($event)></app-user-list>
+	</div>
+</div>
+<div class="jumbotron container panel panel-default">
+	<div *ngIf="hasSelectedAnUser && selectedAction == 'normal'" class="">
+		<h2 style="text-align: center">{{selectedUser.name || "Utilisateur Inconu"}}</h2>
+		<h3 > Prénom : {{selectedUser.firstname || "?"}}</h3>
+		<h3 *ngIf="selectedUser.orientation"> Orientation : {{selectedUser.orientation}}</h3>
+		<h3> Email : {{selectedUser.email|| "?"}}</h3>
+		<h3 *ngIf="selectedUser.matricule"> Matricule : {{selectedUser.matricule}}</h3>
+		<h3> Type : {{selectedUser.type|| "?"}}</h3>
+		<h3> Login : {{selectedUser.login|| "?"}}</h3>
+		<h3> Id du Profile : {{selectedUser.idProfile|| "?"}}</h3>
+	</div>
+	<div *ngIf="hasSelectedAnUser && selectedAction == 'logins'" class="container ">
+		<h2 style="text-align: center">Logins de {{selectedUser.name || "Utilisateur Inconu"}}</h2>
+		<span href="#" class="list-group-item" *ngFor="let info of getInfos(selectedUser)" >
+                <h2 class="list-group-item-heading">{{info.name}}</h2>
+                <h5>Password : {{info.password}}</h5>
+        </span>
+     	<a d="dll"  [href]="href" class="btn btn-success btn-lg pull-right"  download="logins{{selectedUser.name}}.txt">
+          Telecharger Logins
+    	</a>
+        <a class="btn btn-success btn-lg pull-right" (click)="genererLogins(selectedUser)">
+          Generer Logins
+    	</a>
+	</div>
+	<div *ngIf="hasSelectedAnUser && selectedAction == 'modifier'" class="">
+		<form class="form-horizontal" (ngSubmit)="formSubmit()">
+			<h2 style="text-align: center">{{selectedUser.name || "Utilisateur Inconu"}}</h2>
+			<div class="form-group" >
+                        <label for="name" class="col-lg-4 control-label">Nom :</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="selectedUser.name">
+                        </div>
+            </div>
+			<div class="form-group">
+                        <label for="firstname" class="col-lg-4 control-label">Prénom:</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="selectedUser.firstname">
+                        </div>
+             </div>
+			<div *ngIf="selectedUser.type == 'stud' " class="form-group">
+                        <label for="orientation" class="col-lg-4 control-label">Orientation :</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="orientation" name="orientation" [(ngModel)]="selectedUser.orientation">
+                        </div>
+            </div>
+			<div class="form-group" >
+                        <label for="email" class="col-lg-4 control-label">Email :</label>
+                        <div class="col-lg-6">
+                            <input type="mail" class="form-control" id="email" name="email" [(ngModel)]="selectedUser.email">
+                        </div>
+             </div>
+			<div *ngIf="selectedUser.type == 'stud' " class="form-group">
+                        <label for="matricule" class="col-lg-4 control-label">Matricule :</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="matricule" name="matricule" [(ngModel)]="selectedUser.matricule">
+                        </div>
+             </div>
+			<div class="form-group">
+			<label for="type" class="col-lg-4 control-label">Type :</label>
+                        <div class="col-lg-6">
+                            <select class="form-control" name="type" [(ngModel)]="selectedUser.type" id="type">
+                                <option value=admin >Admin</option>
+                                <option value=stud>Etudiant</option>
+                            </select>
+                        </div>
+            </div>
+			<div class="form-group" >
+                        <label for="login" class="col-lg-4 control-label">Login :</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="login" name="login" [(ngModel)]="selectedUser.login">
+                        </div>
+             </div>
+			<div class="form-group" >
+                        <label for="idProfile" class="col-lg-4 control-label">Id du Profile:</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="idProfile" name="idProfile" [(ngModel)]="selectedUser.idProfile">
+                        </div>
+             </div>
+             <div class="form-group">
+                        <div class="col-lg-6 col-lg-offset-4">
+                            <button type="submit" class="btn btn-primary">Modifier</button>
+                        </div>
+             </div>
+		</form>
+	</div>
 </div>

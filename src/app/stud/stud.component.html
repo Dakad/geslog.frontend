@@ -1,11 +1,10 @@
 <div class="main">
     <div class="container" style="margin-top: 75px">
         <div class="list-group">
-            <a href="#" class="list-group-item" *ngFor="let info of infos" >
+            <span href="#" class="list-group-item" *ngFor="let info of infos" >
                 <h2 class="list-group-item-heading">{{info.name}}</h2>
                 <h5>Password : {{info.password}}</h5>
-            </a>
-            <br>
+            </span>
         </div>
          <a id="dll" [href]="href" class="btn btn-success btn-lg pull-right"  download="loginsUtilisateurs.txt">
             Telecharger

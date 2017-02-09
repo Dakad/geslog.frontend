@@ -31,11 +31,11 @@ export class User {
     }
 
 
-    public get firstName(): string {
+    public get firstname(): string {
         return this._firstName;
     }
 
-    public set firstName(v: string) {
+    public set firstname(v: string) {
         this._firstName = v;
     }
 

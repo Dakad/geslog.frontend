@@ -21,13 +21,15 @@ export class UserListComponent implements OnInit {
   @Input() private list: User[];
   // @Output() private selected: User;
   @Output('select') private selectRequest: EventEmitter<User>;
-
+  @Output('selectAction') private selectedAction: EventEmitter<string>;
   checked: boolean[] = [];
   selectionDisponible: boolean = false;
   datas : Information[];
   href;
   constructor(private geslog: GeslogService,private stanizerService: StanizerService) {
     this.selectRequest = new EventEmitter<User>();
+    this.selectedAction = new EventEmitter<string>();
+    
   }
 
   ngOnInit() { 
@@ -39,10 +41,19 @@ export class UserListComponent implements OnInit {
     this.selectRequest.emit(selected);
   }
 
+  selectAction(selectedAction: string) {
+    this.selectedAction.emit(selectedAction);
+  }
+
   create() {
     this.selectRequest.emit();
   }
-
+  checkAll(event){
+    for(let i=0 ; i < this.list.length  ; i++)
+        this.list[i].checked =event.target.checked;
+    this.selectionDisponible = event.target.checked;
+    this.loadDownloadFile();
+  }
   updateChecked(user, event) {
       let ok:boolean = false;
       for(let i=0 ; i < this.list.length  ; i++)
@@ -67,7 +78,7 @@ export class UserListComponent implements OnInit {
         }
       var uri = "data:application/txt;charset=UTF-8," + encodeURIComponent(texteAImprimer);
       this.href = this.stanizerService.sanitize(uri);
-      console.log(texteAImprimer);
+      
 
   }
 }
