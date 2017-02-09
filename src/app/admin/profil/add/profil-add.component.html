@@ -1,11 +1,24 @@
-<form action="">
-
-    <input type="text" name="name" [(ngModel)]="profil.name">
-
-    <select name="apps" id="apps" [(ngModel)]="profil.apps">
-        <option value="app1">AppName#1</option>
-        <option value="app2">AppName#2</option>
-        <option value="app3">AppName#3</option>
-    </select>
-
+<form class="form-horizontal" *ngIf="profil">
+    <h2>{{profil.name || "Nouveau Profil"}}</h2>
+    <fieldset>
+        <div class="form-group">
+            <label for="inputProfilName" class="col-lg-4 control-label">Intitulé : </label>
+            <div class="col-lg-8">
+                <input type="text" autofocus required name="profilName" class="form-control" id="inputProfilName" placeholder="Un titre pour ce profil" [(ngModel)]=profil.name>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAppFormat" class="col-lg-4 control-label">Logicels : </label>
+            <div class="col-lg-8">
+                <app-multi-select [list]=profil.apps></app-multi-select>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <div class="col-lg-8 col-lg-offset-4">
+                <button type="reset" class="btn btn-default" (click)="profil=null">Annuler</button>
+                <button type="submit" class="btn btn-primary" (click)=upsert()>{{profil.id ? "Modifier" : "Créer"}}</button>
+            </div>
+        </div>
+    </fieldset>
 </form>

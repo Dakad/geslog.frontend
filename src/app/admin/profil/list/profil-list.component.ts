@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
 
-import Profil from '../../dto/profil';
+import Profil from '../../../dto/profil';
 
 
 @Component({
@@ -12,8 +12,10 @@ import Profil from '../../dto/profil';
       </small>
        &nbsp;Liste des profils
     </h2>
+    
     <div class="list-group">
-      <h5 class="list-group-item" *ngFor="let profil of list"
+      <h5 class="list-group-item" 
+          *ngFor="let profil of list" (click)="select(profil)"
       >
         {{profil.name}}
       </h5>
@@ -24,22 +26,23 @@ import Profil from '../../dto/profil';
 export class ProfilListComponent implements OnInit {
   @Input() private list: Profil[];
   private selected: Profil;
-  @Output('select')private selectRequest : EventEmitter<Profil>;
+  @Output('select') private selectRequest: EventEmitter<Profil>;
 
 
   constructor() {
     this.selectRequest = new EventEmitter<Profil>();
   }
 
-  ngOnInit() {
-    // Creer une function dans les GesLogService pour recuperer tous les applications
+  ngOnInit() { console.log(this.list); }
+
+  select(selectedProfil: Profil) {
+    if (selectedProfil !== this.selected) {
+      this.selected = selectedProfil;
+      this.selectRequest.emit(this.selected);
+    }
   }
 
-  select(selectedProfil :Profil){
-    this.selectRequest.emit(selectedProfil);
-  }
-
-  create(){
+  create() {
     this.selectRequest.emit();
   }
 

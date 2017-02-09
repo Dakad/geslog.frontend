@@ -8,9 +8,9 @@ export default class Profil {
     private _apps: Appli[];
 
 
-    constructor(name?: string, sect?: string, id?: number) {
+    constructor(name?: string, id?: number) {
         this.name = name;
-        this._id = id;
+        this.id = id;
         this._apps = [];
     }
 
@@ -18,8 +18,10 @@ export default class Profil {
      * extractFromRawData
      */
     static extractFromRawData(raw: any): Profil {
-        let nProfil = new Profil(raw.name, raw.idProfil);
-        raw.apps.forEach((rawApp)=> nProfil.addApp(Appli.extractFromData(rawApp)));
+        const nProfil = new Profil(raw.name, raw.id);
+        if (raw.apps) {
+            raw.apps.forEach((rawApp) => nProfil.addApp(Appli.extractFromData(rawApp)));
+        }
         return nProfil;
     }
 
