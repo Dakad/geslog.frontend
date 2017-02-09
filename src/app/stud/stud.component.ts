@@ -27,7 +27,7 @@ export class StudComponent implements OnInit {
   constructor(private _geslog: GeslogService,private stanizerService: StanizerService) { }
 
   ngOnInit() {
-    //this._geslog.getStudLogins().subscribe(logins => this.logins = logins);;
+    this._geslog.getStudLogins().subscribe(logins => this.infos = logins);;
     this.download();
   }
 
