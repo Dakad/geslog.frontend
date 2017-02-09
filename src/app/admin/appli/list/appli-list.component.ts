@@ -34,7 +34,7 @@ export class AppliListComponent implements OnInit {
   @Output('select') private selectRequest: EventEmitter<Appli>;
 
 
-  constructor(private _route:ActivatedRoute, private _router: Router) {
+  constructor(private _route: ActivatedRoute, private _router: Router) {
     this.selectRequest = new EventEmitter<Appli>();
   }
 
@@ -43,9 +43,9 @@ export class AppliListComponent implements OnInit {
 
   select(selected: Appli) {
     this.selected = selected;
-      console.log(this.mode);
+    console.log(this.mode);
     if (this.mode === 'link') {
-      this._router.navigate(['applis/', this.selected.id ],{ relativeTo: this._route });
+      this._router.navigate(['applis/', this.selected.id], { relativeTo: this._route });
     } else {
       this.selectRequest.emit(this.selected);
     }
