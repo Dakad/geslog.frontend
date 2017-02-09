@@ -1,3 +1,10 @@
+<h2 class="">
+   <small class="pull-left">
+    <button class="btn btn-primary" title="Ajouter un utilisateur" (click)=create()>+</button> &nbsp;
+  </small>
+  &nbsp;Liste des utilisateurs
+</h2>
+<br/>
 <div class="row">
 	<div class="col-md-5">
 		<app-user-list [list]="users" (select)=onUpsert($event)  (selectAction)=onUpsertAction($event)></app-user-list>
@@ -6,13 +13,13 @@
 <div class="jumbotron container panel panel-default ">
 	<div *ngIf="hasSelectedAnUser && selectedAction == 'normal'" class="">
 		<h2 style="text-align: center">{{selectedUser.name || "Utilisateur Inconu"}}</h2>
-		<h3 class="col-lg-4 control-label"> <label> Prénom : {{selectedUser.firstname || "?"}} </label></h3>
-		<h3 *ngIf="selectedUser.orientation" class="col-lg-4 control-label">  Orientation : {{selectedUser.orientation}}</h3>
-		<h3 class="col-lg-4 control-label"> Email : {{selectedUser.email|| "?"}}</h3>
-		<h3 *ngIf="selectedUser.matricule" class="col-lg-4 control-label"> Matricule : {{selectedUser.matricule}}</h3>
-		<h3 class="col-lg-4 control-label"> Type : {{selectedUser.type|| "?"}}</h3>
-		<h3 class="col-lg-4 control-label"> Login : {{selectedUser.login|| "?"}}</h3>
-		<h3 class="col-lg-4 control-label"> Id du Profile : {{selectedUser.idProfile|| "?"}}</h3>
+		<h3 class="col-lg-3 control-label"> <label> Prénom : {{selectedUser.firstname || "?"}} </label></h3>
+		<h3 *ngIf="selectedUser.orientation" class="col-lg-3 control-label">  Orientation : {{selectedUser.orientation}}</h3>
+		<h3 class="col-lg-3 control-label"> Email : {{selectedUser.email|| "?"}}</h3>
+		<h3 *ngIf="selectedUser.matricule" class="col-lg-3 control-label"> Matricule : {{selectedUser.matricule}}</h3>
+		<h3 class="col-lg-3 control-label"> Type : {{selectedUser.type|| "?"}}</h3>
+		<h3 class="col-lg-3 control-label"> Login : {{selectedUser.login|| "?"}}</h3>
+		<h3 class="col-lg-3 control-label"> Profile : {{selectedUser.profil.name|| "?"}}</h3>
 	</div>
 	<div *ngIf="hasSelectedAnUser && selectedAction == 'logins'" class="container ">
 		<h2 style="text-align: center">Logins de {{selectedUser.name || "Utilisateur Inconu"}}</h2>
@@ -25,18 +32,18 @@
     	</a>
 	</div>
 	<div *ngIf="hasSelectedAnUser && selectedAction == 'modifier'" class="">
-		<form class="form-horizontal" (ngSubmit)="formSubmit()">
+		<form class="form-horizontal" (ngSubmit)="modifUser()">
 			<h2 style="text-align: center">{{selectedUser.name || "Utilisateur Inconu"}}</h2>
 			<div class="form-group" >
                         <label for="name" class="col-lg-4 control-label">Nom :</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="selectedUser.name">
+                            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="selectedUser.name" required>
                         </div>
             </div>
 			<div class="form-group">
                         <label for="firstname" class="col-lg-4 control-label">Prénom:</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="selectedUser.firstname">
+                            <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="selectedUser.firstname" required>
                         </div>
              </div>
 			<div *ngIf="selectedUser.type == 'stud' " class="form-group">
@@ -60,24 +67,26 @@
 			<div class="form-group">
 			<label for="type" class="col-lg-4 control-label">Type :</label>
                         <div class="col-lg-6">
-                            <select class="form-control" name="type" [(ngModel)]="selectedUser.type" id="type">
-                                <option value=prof >Prof</option>
-                                <option value=stud>Etudiant</option>
-                                <option value=guest>Invité</option>
+                            <select class="form-control" name="type" [(ngModel)]="selectedUser.type" id="type" required>
+                                <option  *ngFor="let t of types"  [ngValue]=t >{{typesValues[t]}}</option>
                             </select>
                         </div>
             </div>
 			<div class="form-group" >
                         <label for="login" class="col-lg-4 control-label">Login :</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" id="login" name="login" [(ngModel)]="selectedUser.login">
+                            <input type="text" class="form-control" id="login" name="login" [(ngModel)]="selectedUser.login" required>
                         </div>
              </div>
 			<div class="form-group" >
-                        <label for="idProfile" class="col-lg-4 control-label">Id du Profile:</label>
+                        <label for="idProfile" class="col-lg-4 control-label">Profile:</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" id="idProfile" name="idProfile" [(ngModel)]="selectedUser.idProfile">
+                            <select class="form-control" name="idProfile" [(ngModel)]="selectedUser.idProfile" id="idProfile" required>
+                                <option  *ngFor="let p of profils"  [ngValue]=p.id >{{p.name}}</option>
+                            </select>
                         </div>
+
+                      
              </div>
              <div class="form-group">
                         <div class="col-lg-6 col-lg-offset-4">
@@ -86,4 +95,68 @@
              </div>
 		</form>
 	</div>
+    <div *ngIf="!hasSelectedAnUser && isCreating && selectedAction == 'modifier'" class="">
+        <form class="form-horizontal" (ngSubmit)="addUser()">
+            <h2 style="text-align: center">{{newUser.name || "Nouvel Utilisateur"}}</h2>
+            <div class="form-group" >
+                        <label for="name" class="col-lg-4 control-label">Nom :</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="newUser.name" required>
+                        </div>
+            </div>
+            <div class="form-group">
+                        <label for="firstname" class="col-lg-4 control-label">Prénom:</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="newUser.firstname" required>
+                        </div>
+             </div>
+            <div *ngIf="newUser.type == 'stud' " class="form-group">
+                        <label for="orientation" class="col-lg-4 control-label">Orientation :</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="orientation" name="orientation" [(ngModel)]="newUser.orientation">
+                        </div>
+            </div>
+            <div class="form-group" >
+                        <label for="email" class="col-lg-4 control-label">Email :</label>
+                        <div class="col-lg-6">
+                            <input type="mail" class="form-control" id="email" name="email" [(ngModel)]="newUser.email">
+                        </div>
+             </div>
+            <div *ngIf="newUser.type == 'stud' " class="form-group">
+                        <label for="matricule" class="col-lg-4 control-label">Matricule :</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="matricule" name="matricule" [(ngModel)]="newUser.matricule">
+                        </div>
+             </div>
+            <div class="form-group">
+            <label for="type" class="col-lg-4 control-label">Type :</label>
+                        <div class="col-lg-6">
+                            <select class="form-control" name="type" [(ngModel)]="newUser.type" id="type" required>
+                                <option  value=prof >Prof</option>
+                                <option value=stud>Etudiant</option>
+                                <option  value=guest>Invité</option>
+                            </select>
+                        </div>
+            </div>
+            <div class="form-group" >
+                        <label for="login" class="col-lg-4 control-label">Login :</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="login" name="login" [(ngModel)]="newUser.login" required>
+                        </div>
+             </div>
+            <div class="form-group" >
+                        <label for="idProfile" class="col-lg-4 control-label">Profile:</label>
+                        <div class="col-lg-6">
+                            <select class="form-control" name="idProfile" [(ngModel)]="newUser.idProfile" id="idProfile" required>
+                                <option  *ngFor="let p of profils" [ngValue]=p.id >{{p.name}}</option>
+                            </select>
+                        </div>
+             </div>
+             <div class="form-group">
+                        <div class="col-lg-6 col-lg-offset-4">
+                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                        </div>
+             </div>
+        </form>
+    </div>
 </div>

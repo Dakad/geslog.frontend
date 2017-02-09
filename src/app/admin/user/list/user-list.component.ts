@@ -47,7 +47,7 @@ export class UserListComponent implements OnInit {
   }
 
   create() {
-    this.selectRequest.emit();
+    this.selectAction("modifier");
   }
 
   upload(){

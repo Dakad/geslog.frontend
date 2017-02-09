@@ -15,10 +15,11 @@ export class MultiSelectComponent implements OnInit {
 
     // For future use, make a selection between the list
     private searchFilter: string;
+    private tempList : any[] = [];
 
 
-
-    constructor() { }
+    constructor() { 
+    }
 
     ngOnInit() {
         // if the selected is provided, make those selected on the HTML component.
@@ -26,6 +27,5 @@ export class MultiSelectComponent implements OnInit {
 
 
     updateSelection() {
-
     }
 }

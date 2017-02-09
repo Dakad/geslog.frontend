@@ -12,7 +12,7 @@ export default class Appli {
         this.id = id;
     }
 
-    public static extractFromData(raw:any){
+    public static extractFromRawData(raw:any){
         return new Appli(raw.name,raw.format,raw.id);
     }
 

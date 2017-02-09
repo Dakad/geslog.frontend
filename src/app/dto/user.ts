@@ -4,12 +4,12 @@ import Profil from './profil';
 
 
 export enum UserType{
-    STUD, PROF,GUEST
+    STUD, PROF,GUEST 
 }
 
 
 export class User {
-    private _firstName: string;
+    private _firstname: string;
     private _name: string;
     private _orientation: string;
     private _email: string;
@@ -17,26 +17,39 @@ export class User {
     private _type: string;
     private _login: string;
     private _profil: Profil;
+    private _idProfile: number;
     private _checked: boolean = false;
 
-    constructor() {
+    constructor(firstname?:string ,name?:string, orientation?:string,email?:string , matricule?: string , type?:string , 
+        login?:string ,  idProfile?:number) {
         this._checked = false;
+        this._firstname = firstname;
+        this._name = name;
+        this._orientation = orientation;
+        this._email = email;
+        this._matricule = matricule;
+        this._type = type;
+        this._login = login;
+       // this._profil = profil;
+        this._idProfile = idProfile;
     }
 
     /**
      * extractFromRawData
      */
     static extractFromRawData(raw: any): User {
-        return new User();
+        //console.log("test : " + raw.name + " :  " + raw.matricule );
+        const user:User =  new User(raw.firstname,raw.name,raw.orientation , raw.email , raw.matricule , raw.type , raw.login , raw.idProfile) ;
+        return user;
     }
 
 
     public get firstname(): string {
-        return this._firstName;
+        return this._firstname;
     }
 
     public set firstname(v: string) {
-        this._firstName = v;
+        this._firstname = v;
     }
 
     public get name(): string {
@@ -99,6 +112,17 @@ export class User {
         this._profil = v;
     }
 
+     public get idProfile(): number {
+        return this._idProfile;
+    }
+
+    public set uiProfile(v: number) {
+        this._idProfile = v;
+    }
+
+    public setProfil(v:Profil){
+        this._profil = v;
+    }
     public get checked(): boolean {
         return this._checked;
     }

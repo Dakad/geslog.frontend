@@ -34,22 +34,11 @@ export class GeslogService implements OnInit {
         matricule = (!matricule) ? localStorage.getItem('userMatricule') : matricule;
         let url:string  =  'api-logins.json';
          //let url:string  =  'logins/${matricule}';
-        return this._http.get(`${this._urlToApi}/{url}`).map(res => res.json().data);
+       return this._http.get(`${this._urlToApi}/${url}`).map(res => res.json().data);
     
-       // return this._http.get('app/mocks/api-logins.json').map(res => res.json().data);
+       //return this._http.get('app/mocks/api-logins.json').map(res => res.json().data);
        
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
     private extractData(res: Response) {
