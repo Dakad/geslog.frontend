@@ -55,16 +55,14 @@ export class UserComponent implements OnInit {
         return this.infos;
     }
 
-    genererLogins(user : User){
-
-    }
-
     loadDownloadFile(){
         let texteAImprimer:string = "" ;
         texteAImprimer +=  "Logins de l'utilisateur " + this.selectedUser.name + " : \n";
         for(let j=0 ; j < this.infos.length  ; j++){
             texteAImprimer += "\tNom : " + this.infos[j].name + " Password : " + this.infos[j].password + "\n";
         }
+        if(this.infos.length == 0)
+            texteAImprimer += "\t Aucun logins disponible";
     
         var uri = "data:application/txt;charset=UTF-8," + encodeURIComponent(texteAImprimer);
         this.href = this.stanizerService.sanitize(uri);

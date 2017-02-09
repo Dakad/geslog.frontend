@@ -23,9 +23,6 @@
      	<a d="dll"  [href]="href" class="btn btn-success btn-lg pull-right"  download="logins{{selectedUser.name}}.txt">
           Telecharger Logins
     	</a>
-        <a class="btn btn-success btn-lg pull-right" (click)="genererLogins(selectedUser)">
-          Generer Logins
-    	</a>
 	</div>
 	<div *ngIf="hasSelectedAnUser && selectedAction == 'modifier'" class="">
 		<form class="form-horizontal" (ngSubmit)="formSubmit()">
@@ -64,8 +61,9 @@
 			<label for="type" class="col-lg-4 control-label">Type :</label>
                         <div class="col-lg-6">
                             <select class="form-control" name="type" [(ngModel)]="selectedUser.type" id="type">
-                                <option value=admin >Admin</option>
+                                <option value=prof >Prof</option>
                                 <option value=stud>Etudiant</option>
+                                <option value=guest>Invité</option>
                             </select>
                         </div>
             </div>
