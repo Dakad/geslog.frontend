@@ -3,16 +3,16 @@
 		<app-user-list [list]="users" (select)=onUpsert($event)  (selectAction)=onUpsertAction($event)></app-user-list>
 	</div>
 </div>
-<div class="jumbotron container panel panel-default">
+<div class="jumbotron container panel panel-default ">
 	<div *ngIf="hasSelectedAnUser && selectedAction == 'normal'" class="">
 		<h2 style="text-align: center">{{selectedUser.name || "Utilisateur Inconu"}}</h2>
-		<h3 > Prénom : {{selectedUser.firstname || "?"}}</h3>
-		<h3 *ngIf="selectedUser.orientation"> Orientation : {{selectedUser.orientation}}</h3>
-		<h3> Email : {{selectedUser.email|| "?"}}</h3>
-		<h3 *ngIf="selectedUser.matricule"> Matricule : {{selectedUser.matricule}}</h3>
-		<h3> Type : {{selectedUser.type|| "?"}}</h3>
-		<h3> Login : {{selectedUser.login|| "?"}}</h3>
-		<h3> Id du Profile : {{selectedUser.idProfile|| "?"}}</h3>
+		<h3 class="col-lg-4 control-label"> <label> Prénom : {{selectedUser.firstname || "?"}} </label></h3>
+		<h3 *ngIf="selectedUser.orientation" class="col-lg-4 control-label">  Orientation : {{selectedUser.orientation}}</h3>
+		<h3 class="col-lg-4 control-label"> Email : {{selectedUser.email|| "?"}}</h3>
+		<h3 *ngIf="selectedUser.matricule" class="col-lg-4 control-label"> Matricule : {{selectedUser.matricule}}</h3>
+		<h3 class="col-lg-4 control-label"> Type : {{selectedUser.type|| "?"}}</h3>
+		<h3 class="col-lg-4 control-label"> Login : {{selectedUser.login|| "?"}}</h3>
+		<h3 class="col-lg-4 control-label"> Id du Profile : {{selectedUser.idProfile|| "?"}}</h3>
 	</div>
 	<div *ngIf="hasSelectedAnUser && selectedAction == 'logins'" class="container ">
 		<h2 style="text-align: center">Logins de {{selectedUser.name || "Utilisateur Inconu"}}</h2>
