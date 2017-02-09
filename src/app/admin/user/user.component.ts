@@ -34,11 +34,12 @@ export class UserComponent implements OnInit {
     href;
 	constructor(private _geslog: GeslogAdminService,private geslog: GeslogService,private stanizerService: StanizerService) {
 
-        var valeurs = Object.keys(UserType);
-        this.types = valeurs.slice(valeurs.length / 2);
-        this.typesValues['STUD'] = "Étudiant";
-        this.typesValues['PROF'] = "Professeur";
-        this.typesValues['GUEST'] = "Invité";
+        this.types = Object.keys(UserType);
+        for(let i= 0 ; i < this.types.length ; i++){
+            this.typesValues[this.types[i]]= UserType[ this.types[i] ] ;  
+        }
+        
+        console.log(this.typesValues);
     }
 
     ngOnInit() {
@@ -62,6 +63,9 @@ export class UserComponent implements OnInit {
 
     onUpsertAction(action: string){
         this.selectedAction = (action) ? action : "normal";
+        if(action == 'cree'){
+            this.create();
+        }
        // console.log(this.selectedAction);
     }
 
