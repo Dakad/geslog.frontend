@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GeslogService implements OnInit {
-    protected _urlToApi: string = 'http://adress.to/api';
+    protected _urlToApi: string = 'app/mocks';
     protected _head: Headers = new Headers({ 'Content-Type': 'application/json' });
 
     constructor(protected _http: Http, protected _opts: RequestOptions) {
@@ -32,9 +32,11 @@ export class GeslogService implements OnInit {
      */
     public getStudLogins(matricule?: number | string) {
         matricule = (!matricule) ? localStorage.getItem('userMatricule') : matricule;
-        //return this._http.get(`${this._urlToApi}/logins/${matricule}`).map(res => res.json().data);
-         console.log("tentative");
-        return this._http.get('app/mocks/api-logins.json').map(res => res.json().data);
+        let url:string  =  'api-logins.json';
+         //let url:string  =  'logins/${matricule}';
+        return this._http.get(`${this._urlToApi}/{url}`).map(res => res.json().data);
+    
+       // return this._http.get('app/mocks/api-logins.json').map(res => res.json().data);
        
     }
 
