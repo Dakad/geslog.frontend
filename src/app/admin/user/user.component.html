@@ -13,13 +13,13 @@
 <div class="jumbotron container panel panel-default ">
 	<div *ngIf="hasSelectedAnUser && selectedAction == 'normal'" class="">
 		<h2 style="text-align: center">{{selectedUser.name || "Utilisateur Inconu"}}</h2>
-		<h3 class="col-lg-4 control-label"> <label> Prénom : {{selectedUser.firstname || "?"}} </label></h3>
-		<h3 *ngIf="selectedUser.orientation" class="col-lg-4 control-label">  Orientation : {{selectedUser.orientation}}</h3>
-		<h3 class="col-lg-4 control-label"> Email : {{selectedUser.email|| "?"}}</h3>
-		<h3 *ngIf="selectedUser.matricule" class="col-lg-4 control-label"> Matricule : {{selectedUser.matricule}}</h3>
-		<h3 class="col-lg-4 control-label"> Type : {{selectedUser.type|| "?"}}</h3>
-		<h3 class="col-lg-4 control-label"> Login : {{selectedUser.login|| "?"}}</h3>
-		<h3 class="col-lg-4 control-label"> Profile : {{selectedUser.profil.name|| "?"}}</h3>
+		<h3 class="col-lg-3 control-label"> <label> Prénom : {{selectedUser.firstname || "?"}} </label></h3>
+		<h3 *ngIf="selectedUser.orientation" class="col-lg-3 control-label">  Orientation : {{selectedUser.orientation}}</h3>
+		<h3 class="col-lg-3 control-label"> Email : {{selectedUser.email|| "?"}}</h3>
+		<h3 *ngIf="selectedUser.matricule" class="col-lg-3 control-label"> Matricule : {{selectedUser.matricule}}</h3>
+		<h3 class="col-lg-3 control-label"> Type : {{selectedUser.type|| "?"}}</h3>
+		<h3 class="col-lg-3 control-label"> Login : {{selectedUser.login|| "?"}}</h3>
+		<h3 class="col-lg-3 control-label"> Profile : {{selectedUser.profil.name|| "?"}}</h3>
 	</div>
 	<div *ngIf="hasSelectedAnUser && selectedAction == 'logins'" class="container ">
 		<h2 style="text-align: center">Logins de {{selectedUser.name || "Utilisateur Inconu"}}</h2>
@@ -68,7 +68,7 @@
 			<label for="type" class="col-lg-4 control-label">Type :</label>
                         <div class="col-lg-6">
                             <select class="form-control" name="type" [(ngModel)]="selectedUser.type" id="type" required>
-                                <option  *ngFor="let t of types"  [ngValue]=t >{{t}}</option>
+                                <option  *ngFor="let t of types"  [ngValue]=t >{{typesValues[t]}}</option>
                             </select>
                         </div>
             </div>

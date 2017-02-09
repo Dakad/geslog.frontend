@@ -24,14 +24,21 @@ export class UserComponent implements OnInit {
 	private users: User[];
     private profils: Profil[];
     private infos: Information[];
-    private types:string[] =  ['stud','prof','guest'];
+    private types:string[] ;// =  Object.keys(UserType) ;// ['stud','prof','guest'];
+    private typesValues:string[] =[];
 	private selectedUser: User;
     private newUser: User ;
     private selectedAction: string = "normal";
     hasSelectedAnUser : boolean = false;
     isCreating:boolean = false;
     href;
-	constructor(private _geslog: GeslogAdminService,private geslog: GeslogService,private stanizerService: StanizerService) { 
+	constructor(private _geslog: GeslogAdminService,private geslog: GeslogService,private stanizerService: StanizerService) {
+
+        var valeurs = Object.keys(UserType);
+        this.types = valeurs.slice(valeurs.length / 2);
+        this.typesValues['STUD'] = "Étudiant";
+        this.typesValues['PROF'] = "Professeur";
+        this.typesValues['GUEST'] = "Invité";
     }
 
     ngOnInit() {

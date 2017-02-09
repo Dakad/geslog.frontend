@@ -4,7 +4,7 @@ import Profil from './profil';
 
 
 export enum UserType{
-    STUD, PROF,GUEST
+    STUD, PROF,GUEST 
 }
 
 
