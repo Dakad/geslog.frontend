@@ -1,10 +1,4 @@
 <div class="container">
-  <h2 class="">
-   <small class="pull-left">
-    <button class="btn btn-primary" title="Ajouter un utilisateur" (click)=create()>+</button> &nbsp;
-  </small>
-  &nbsp;Liste des utilisateurs
-</h2>
 <br>
 <form class="form-horizontal" (ngSubmit)="formSubmit()">
  <div class="form-group">
@@ -36,7 +30,6 @@
  <td>
   <a  class="btn btn-success btn-xs" (click)="select(user)" (click)="selectAction('modifier')">Modifier</a>
   <a  class="btn btn-info btn-xs" (click)="select(user)" (click)="selectAction('logins')">Logins</a>
-  <a  class="btn btn-warning btn-xs" (click)="select(user)" (click)="selectAction('acess')" >Acess</a>
   <!--<button  class="btn btn-danger btn-xs">Suprimmer</button>-->
 </td>
 

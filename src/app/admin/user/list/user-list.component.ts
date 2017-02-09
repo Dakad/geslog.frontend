@@ -46,7 +46,7 @@ export class UserListComponent implements OnInit {
   }
 
   create() {
-    this.selectRequest.emit();
+    this.selectAction("modifier");
   }
   checkAll(event){
     for(let i=0 ; i < this.list.length  ; i++)

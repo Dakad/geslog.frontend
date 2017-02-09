@@ -6,6 +6,8 @@ import { GeslogAdminService } from '../geslog-admin.service';
 import { GeslogService } from '../../services/geslog-api.service';
 import {StanizerService} from '../../stanizer.service';
 
+import Profil from '../../dto/profil';
+
 export class Information {
   name: string;
   password: string;
@@ -20,31 +22,44 @@ export class Information {
 })
 export class UserComponent implements OnInit {
 	private users: User[];
+    private profils: Profil[];
     private infos: Information[];
+    private types:string[] =  ['stud','prof','guest'];
 	private selectedUser: User;
+    private newUser: User ;
     private selectedAction: string = "normal";
-    hasSelectedAnUser : boolean = false;;
+    hasSelectedAnUser : boolean = false;
+    isCreating:boolean = false;
     href;
-	constructor(private _geslog: GeslogAdminService,private geslog: GeslogService,private stanizerService: StanizerService) { }
+	constructor(private _geslog: GeslogAdminService,private geslog: GeslogService,private stanizerService: StanizerService) { 
+    }
 
     ngOnInit() {
         this._geslog.listUsers().subscribe(data => this.users = data);
         this.geslog.getStudLogins().subscribe(res => this.infos = res);
+        this._geslog.listProfils().subscribe(res => this.profils = res);
+        console.log("looo");              
     }
 
     onUpsert(event: User) {
-        this.selectedUser = (event) ? event : new User();
+        for(let i = 0 ; i < this.users.length ; i++)
+         for(let j = 0 ; j < this.profils.length ; j++)
+            if(this.users[i].idProfile == this.profils[j].id)
+                this.users[i].profil = this.profils[j];
+        this.selectedUser = (event) ? event : new User("","","", "" , "" , "" , "" , 0);
         this.hasSelectedAnUser = true;
         this.selectedAction = "normal";
+        this.isCreating = false; 
+        console.log(this.selectedUser);
     }
 
     onUpsertAction(action: string){
         this.selectedAction = (action) ? action : "normal";
-        console.log(this.selectedAction);
+       // console.log(this.selectedAction);
     }
 
     onUpsertAppli(user: User) {
-        console.log(user);
+        //console.log(user);
         // Call the upsert method on GeslogAdminService to send user
         // this._geslog.
     }
@@ -66,11 +81,18 @@ export class UserComponent implements OnInit {
     
         var uri = "data:application/txt;charset=UTF-8," + encodeURIComponent(texteAImprimer);
         this.href = this.stanizerService.sanitize(uri);
-      
-
   }
-  formSubmit(){
-  
+
+  create(){
+        this.hasSelectedAnUser = false;
+        this.selectedAction = "modifier";
+        this.isCreating = true;
+        this.newUser = new User("","","", "" , "" , "" , "" , 0);
+  }
+  modifUser(){
+  }
+  addUser(){
+        console.log(this.newUser);
   }
 
 }
