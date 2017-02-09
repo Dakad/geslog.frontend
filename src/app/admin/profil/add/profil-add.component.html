@@ -4,7 +4,16 @@
         <div class="form-group">
             <label for="inputProfilName" class="col-lg-4 control-label">Intitulé : </label>
             <div class="col-lg-8">
-                <input type="text" autofocus required name="profilName" class="form-control" id="inputProfilName" placeholder="Un titre pour ce profil" [(ngModel)]=profil.name>
+                <input type="text" autofocus required name="profilName" class="form-control" id="inputProfilName" placeholder="Un titre pour ce profil"
+                    [(ngModel)]=profil.name>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="affichage" class="col-lg-4 control-label">Logicels du profil: </label>
+            <div class="col-lg-8">
+                <span multiple class="form-control btn col-lg-8 " style="height:100px;overflow:auto;" id="affichage" *ngIf="profil.apps" >
+                    <p *ngFor="let item of profil.apps" >{{item.login || item.name}} </p>
+                </span>
             </div>
         </div>
         <div class="form-group">

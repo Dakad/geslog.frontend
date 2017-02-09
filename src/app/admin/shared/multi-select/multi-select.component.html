@@ -19,7 +19,7 @@
 </div>-->
 
 <select multiple class="form-control" id="selectMulti" *ngIf="list">
-    <option *ngFor="let item of list" (change)="updateSelection()" >{{item.login || item.name}}</option>
+    <option *ngFor="let item of list" (change)="updateSelection()" [ngValue]="">{{item.login || item.name}}</option>
 
 </select>
 
