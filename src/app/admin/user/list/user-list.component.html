@@ -14,7 +14,7 @@
      <th>Actions</th>
    </tr>
  </thead>
- <tbody>
+ <tbody style="height:100px;overflow:auto;">
   <tr *ngFor="let user of list" [class.selected]="selected && user.id === selected.id" >
    <td ><div class="checkbox">
     <label>
