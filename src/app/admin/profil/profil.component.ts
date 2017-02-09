@@ -35,12 +35,14 @@ export class ProfilComponent implements OnInit {
 
   onSelect(profil: Profil) {
     if (profil) {
-      console.log(typeof profil);
+      //console.log(typeof profil);
       // Go fecth all applications related to this selected profil
       // this._geslog.getProfilById(profil.id)
       //              .subscribe(data => this.selectedProfil = data);
       this._geslog.listApplis()
         .subscribe(apps => {
+          
+          profil.resetApps();
           apps.forEach((app) => profil.addApp(app));
           this.selectedProfil = profil;
         });
@@ -48,6 +50,8 @@ export class ProfilComponent implements OnInit {
       profil = new Profil();
       this._geslog.listApplis()
         .subscribe(apps => {
+
+          profil.resetApps();
           apps.forEach((app) => profil.addApp(app));
           this.selectedProfil = profil;
         });

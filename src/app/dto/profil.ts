@@ -19,6 +19,7 @@ export default class Profil {
      */
     static extractFromRawData(raw: any): Profil {
         const nProfil = new Profil(raw.name, raw.id);
+       // nProfil.app() =  [];
         if (raw.apps) {
             raw.apps.forEach((rawApp) => nProfil.addApp(Appli.extractFromData(rawApp)));
         }
@@ -50,5 +51,7 @@ export default class Profil {
         this._id = v;
     }
 
-
+    public resetApps() {
+        this._apps = [];
+    }
 }
