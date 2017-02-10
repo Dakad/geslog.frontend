@@ -74,12 +74,8 @@ export class FileStreamComponent implements OnInit {
         xhr: XMLHttpRequest = new XMLHttpRequest();
         if (fileCount > 0) { // a file was selected
             for (let i = 0; i < fileCount; i++) {
-                formData.append('file[]', inputEl.files.item(i));
+                formData.append('file', inputEl.files.item(i));
             }
-           // this.http.post('/', formData);
-             
-                // do whatever you do...
-                // subscribe to observable to listen for response
         }
 
           xhr.onreadystatechange = () => {
@@ -100,7 +96,7 @@ export class FileStreamComponent implements OnInit {
             this.progressObserver.next(this.progress);
         };
 
-        xhr.open('POST', "/users", true);
+        xhr.open('POST', "https://geslog-akad1070.c9users.io/api/users", true);
         xhr.send(formData);
         }).catch(this.handleError);
     }

@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { GeslogAdminService } from './geslog-admin.service';
-import { GeslogService      }  from '../services/geslog-api.service';
+import { GeslogService } from '../services/geslog-api.service';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { MultiSelectComponent } from './shared/multi-select/multi-select.component';
 
@@ -24,7 +24,6 @@ import { AppliListComponent } from './appli/list/appli-list.component';
 import { UserComponent } from './user/user.component';
 import { UserAddComponent } from './user/add/user-add.component';
 import { UserListComponent } from './user/list/user-list.component';
-import { UserListItemComponent } from './user/list/item/user-list-item.component';
 
 
 
@@ -33,7 +32,7 @@ import { UserListItemComponent } from './user/list/item/user-list-item.component
     CommonModule,
     FormsModule,
     HttpModule,
-    AdminRoutingModule,
+    AdminRoutingModule
 
   ],
   exports: [],
@@ -42,8 +41,8 @@ import { UserListItemComponent } from './user/list/item/user-list-item.component
     AdminComponent, AdminDashboardComponent,
     ProfilComponent, ProfilAddComponent, ProfilListComponent,
     AppliComponent, AppliAddComponent, AppliListComponent,
-    UserAddComponent, UserComponent, UserListComponent,UserListItemComponent
+    UserAddComponent, UserComponent, UserListComponent
   ],
-  providers: [GeslogAdminService,GeslogService],
+  providers: [GeslogAdminService, GeslogService],
 })
 export class AdminModule { }

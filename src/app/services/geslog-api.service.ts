@@ -6,7 +6,7 @@ import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { env } from '../../environments/environment';
 
-import { User } from '../dto/user';
+import { User,Information } from '../dto/user';
 
 
 @Injectable()
@@ -23,13 +23,12 @@ export class GeslogService implements OnInit {
     /**
      * Allow the std to get his logins
      */
-    public getStudLogins(matricule?: number | string): Observable<User[]> {
+    public getStudLogins(matricule?: number | string): Observable<Information[]> {
         let url: string = env.api.getStudLogins;
         matricule = (!matricule) ? localStorage.getItem('userMatricule') : matricule;
         //let url:string  =  'logins/${matricule}';
         return this._http.get(`${this._urlToApi}/${url}/${matricule}`)
-            .map(res => res.json().data as any[])
-            .map(data => data)
+            .map(res => res.json().data as Information[])
             .catch(err => this.handleError(err));
     }
 
