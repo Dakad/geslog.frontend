@@ -6,7 +6,7 @@ import Profil from './profil';
 export const UserType = {
     ADMIN : 'Admin',
     STUD: 'Etudiant',
-    PROF: 'PRofesseur',
+    PROF: 'Professeur',
     GUEST: 'Invité'
 }
 

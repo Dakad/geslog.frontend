@@ -51,12 +51,15 @@ export class UserComponent implements OnInit {
         this.selectedUser = (event) ? event : new User("", "", "", "", "", "", "", 0);
         this.hasSelectedAnUser = true;
         this.selectedAction = "normal";
-        this.isCreating = false;
         console.log(this.selectedUser);
+        this.isCreating = false;
     }
 
     onUpsertAction(action: string) {
         this.selectedAction = (action) ? action : "normal";
+        if (action == 'cree') {
+            this.create();
+        }
         // console.log(this.selectedAction);
     }
 
@@ -93,8 +96,11 @@ export class UserComponent implements OnInit {
     }
     modifUser() {
     }
-    addUser() {
-        console.log(this.newUser);
+    addUser(user: User) {
+        //     console.log(this.newUser);
+    }
+    removeUser(user: User) {
+
     }
 
 }

@@ -40,7 +40,7 @@ export class AppliListComponent implements OnInit {
   @Output('deleteMe') private deleteAppRequest: EventEmitter<Appli>;
 
 
-  constructor(private _route:ActivatedRoute, private _router: Router) {
+  constructor(private _route: ActivatedRoute, private _router: Router) {
     this.selectRequest = new EventEmitter<Appli>();
     this.scriptAppRequest = new EventEmitter<Appli>();
     this.deleteAppRequest = new EventEmitter<Appli>();
@@ -51,9 +51,9 @@ export class AppliListComponent implements OnInit {
 
   selectMe(selected: Appli) {
     this.selected = selected;
-      console.log(this.mode);
+    console.log(this.mode);
     if (this.mode === 'link') {
-      this._router.navigate(['applis/', this.selected.id ],{ relativeTo: this._route });
+      this._router.navigate(['applis/', this.selected.id], { relativeTo: this._route });
     } else {
       this.selectRequest.emit(this.selected);
     }

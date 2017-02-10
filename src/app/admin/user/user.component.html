@@ -14,6 +14,23 @@
         <h3 class="col-lg-3 control-label"> Login : {{selectedUser.login|| "?"}}</h3>
         <h3 class="col-lg-3 control-label"> Profile : {{selectedUser.profil.name|| "?"}}</h3>
     </div>
+    <div *ngIf="hasSelectedAnUser && selectedAction == 'suprimmer'" class="">
+        <h2 style="text-align: center">Supression de {{selectedUser.name || "Utilisateur Inconu"}}</h2>
+        <h3 class="col-lg-3 control-label"> <label> Prénom : {{selectedUser.firstname || "?"}} </label></h3>
+        <h3 *ngIf="selectedUser.orientation" class="col-lg-3 control-label"> Orientation : {{selectedUser.orientation}}</h3>
+        <h3 class="col-lg-3 control-label"> Email : {{selectedUser.email|| "?"}}</h3>
+        <h3 *ngIf="selectedUser.matricule" class="col-lg-3 control-label"> Matricule : {{selectedUser.matricule}}</h3>
+        <h3 class="col-lg-3 control-label"> Type : {{selectedUser.type|| "?"}}</h3>
+        <h3 class="col-lg-3 control-label"> Login : {{selectedUser.login|| "?"}}</h3>
+        <h3 class="col-lg-3 control-label"> Profile : {{selectedUser.profil.name|| "?"}}</h3>
+        <form class="form-horizontal" (ngSubmit)="removeUser(selectedUser)">
+        <div class="form-group">
+                <div class="col-lg-6 col-lg-offset-4">
+                    <button type="submit" class="btn btn-primary" name="suprimmer">Suprimmer</button>
+                </div>
+        </div>
+        </form>
+    </div>
     <div *ngIf="hasSelectedAnUser && selectedAction == 'logins'" class="container ">
         <h2 style="text-align: center">Logins de {{selectedUser.name || "Utilisateur Inconu"}}</h2>
         <span href="#" class="list-group-item" *ngFor="let info of getInfos(selectedUser)">
@@ -39,7 +56,7 @@
                     <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="selectedUser.firstname" required>
                 </div>
             </div>
-            <div *ngIf="selectedUser.type == 'stud' " class="form-group">
+            <div *ngIf="selectedUser.type == 'STUD' " class="form-group">
                 <label for="orientation" class="col-lg-4 control-label">Orientation :</label>
                 <div class="col-lg-6">
                     <input type="text" class="form-control" id="orientation" name="orientation" [(ngModel)]="selectedUser.orientation">
@@ -51,7 +68,7 @@
                     <input type="mail" class="form-control" id="email" name="email" [(ngModel)]="selectedUser.email">
                 </div>
             </div>
-            <div *ngIf="selectedUser.type == 'stud' " class="form-group">
+            <div *ngIf="selectedUser.type == 'STUD' " class="form-group">
                 <label for="matricule" class="col-lg-4 control-label">Matricule :</label>
                 <div class="col-lg-6">
                     <input type="text" class="form-control" id="matricule" name="matricule" [(ngModel)]="selectedUser.matricule">
@@ -62,7 +79,7 @@
                 <div class="col-lg-6">
                     <select class="form-control" name="type" [(ngModel)]="selectedUser.type" id="type" required>
                                 <option  *ngFor="let t of types"  [ngValue]=t >{{typesValues[t]}}</option>
-                            </select>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
@@ -89,7 +106,7 @@
         </form>
     </div>
     <div *ngIf="!hasSelectedAnUser && isCreating && selectedAction == 'modifier'" class="">
-        <form class="form-horizontal" (ngSubmit)="addUser()">
+        <form class="form-horizontal" (ngSubmit)="addUser(newUser)">
             <h2 style="text-align: center">{{newUser.name || "Nouvel Utilisateur"}}</h2>
             <div class="form-group">
                 <label for="name" class="col-lg-4 control-label">Nom :</label>
@@ -103,7 +120,7 @@
                     <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="newUser.firstname" required>
                 </div>
             </div>
-            <div *ngIf="newUser.type == 'stud' " class="form-group">
+            <div *ngIf="newUser.type == 'STUD' " class="form-group">
                 <label for="orientation" class="col-lg-4 control-label">Orientation :</label>
                 <div class="col-lg-6">
                     <input type="text" class="form-control" id="orientation" name="orientation" [(ngModel)]="newUser.orientation">
@@ -115,7 +132,7 @@
                     <input type="mail" class="form-control" id="email" name="email" [(ngModel)]="newUser.email">
                 </div>
             </div>
-            <div *ngIf="newUser.type == 'stud' " class="form-group">
+            <div *ngIf="newUser.type == 'STUD' " class="form-group">
                 <label for="matricule" class="col-lg-4 control-label">Matricule :</label>
                 <div class="col-lg-6">
                     <input type="text" class="form-control" id="matricule" name="matricule" [(ngModel)]="newUser.matricule">
@@ -125,10 +142,8 @@
                 <label for="type" class="col-lg-4 control-label">Type :</label>
                 <div class="col-lg-6">
                     <select class="form-control" name="type" [(ngModel)]="newUser.type" id="type" required>
-                                <option  value=prof >Prof</option>
-                                <option value=stud>Etudiant</option>
-                                <option  value=guest>Invité</option>
-                            </select>
+                                <option  *ngFor="let t of types"  [ngValue]=t >{{typesValues[t]}}</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
