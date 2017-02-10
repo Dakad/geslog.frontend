@@ -27,6 +27,12 @@ export class UserListComponent implements OnInit {
   selectionDisponible: boolean = false;
   datas: Information[];
   href;
+   private filtres: string[] = [];
+  private firstName: string = 'firstName';
+  private login: string = 'login';
+  private matricule: string = 'matricule';
+  private email: string = 'email';
+  private type: string = 'type';
   constructor(private geslog: GeslogService, private stanizerService: StanizerService) {
     this.selectRequest = new EventEmitter<User>();
     this.selectedAction = new EventEmitter<string>();
@@ -34,7 +40,7 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.geslog.getStudLogins().subscribe(res => this.datas = res);
+    this.geslog.getStudLogins().subscribe(res => {this.datas = res ;if(!res) this.datas = []; } );
   }
 
 
@@ -51,7 +57,7 @@ export class UserListComponent implements OnInit {
   }
 
   upload() {
-    console.log('Missing the upload function');
+     this.selectAction("upload");
   }
 
   checkAll(event) {
@@ -75,7 +81,7 @@ export class UserListComponent implements OnInit {
   loadDownloadFile() {
     let texteAImprimer: string = "";
     for (let i = 0; i < this.list.length; i++)
-      if (this.list[i].checked) {
+      if (this.list[i].checked && this.list[i].matricule) {
         this.geslog.getStudLogins(this.list[i].matricule);
         texteAImprimer += "Logins de l'utilisateur " + this.list[i].lastName + " : \n";
         for (let j = 0; j < this.datas.length; j++) {
@@ -86,5 +92,33 @@ export class UserListComponent implements OnInit {
     this.href = this.stanizerService.sanitize(uri);
 
 
+  }
+   
+   filtrer(element: string, valeur: string): boolean {
+    if (!valeur)
+      return true;
+    if (valeur == "")
+      return true;
+    return element.toLowerCase().includes(valeur.toLowerCase());
+  }
+
+  listeFiltre(): User[] {
+    let listR: User[] = [];
+    if (!this.list)
+      return listR;
+    let compteur: number = 0;
+    for (let i = 0; i < this.list.length; i++) {
+      let ok: boolean = false;
+      ok = this.filtrer(this.list[i].firstName, this.filtres[this.firstName]) &&
+        this.filtrer(this.list[i].login, this.filtres[this.login]) &&
+        this.filtrer(this.list[i].matricule, this.filtres[this.matricule]) &&
+        this.filtrer(this.list[i].email, this.filtres[this.email]) &&
+        this.filtrer(this.list[i].type, this.filtres[this.type]) ;
+      if (ok) {
+        listR[compteur] = this.list[compteur];
+        compteur++;
+      }
+    }
+    return listR;
   }
 }

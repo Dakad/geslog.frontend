@@ -39,8 +39,9 @@ export class UserComponent implements OnInit {
     ngOnInit() {
         this._geslog.listUsers().subscribe(data => this.users = data);
         this._geslog.getStudLogins().subscribe(res => {
-            console.log(res);
             this.infos = res
+            if(!res)
+            this.infos = [];
         });
         this._geslog.listProfils().subscribe(res => this.profils = res);
     }
@@ -71,6 +72,8 @@ export class UserComponent implements OnInit {
     }
 
     getInfos(user: User): Information[] {
+        if(!user.matricule)
+            return [];
         this._geslog.getStudLogins(user.matricule);
         this.loadDownloadFile();
         return this.infos;

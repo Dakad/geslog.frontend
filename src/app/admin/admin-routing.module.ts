@@ -13,6 +13,8 @@ import { AdminComponent } from './admin.component';
 import { AdminDashboardComponent } from './admin-dashboard.component';
 import { UserComponent } from './user/user.component';
 
+import { FileStreamComponent } from '../test/file-stream/file-stream.component';
+
 
 
 

@@ -8,7 +8,6 @@ import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 import { LoginComponent } from './login/login.component';
 import PageNotFoundComponent from './page-not-found.component';
 import FlashMsgComponent from './flash-msg.component';
-import { FileStreamComponent } from './test/file-stream/file-stream.component';
 
 const routes: Routes = [
   { path: 'msg', component: FlashMsgComponent, outlet: 'flashMsg' },
@@ -25,7 +24,6 @@ const routes: Routes = [
     // canActivate: [AuthGuard]
   },
 
-  { path: 'upload', component: FileStreamComponent },
 
   { path: '**', component: PageNotFoundComponent }
 ];

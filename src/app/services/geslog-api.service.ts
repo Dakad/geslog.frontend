@@ -26,9 +26,13 @@ export class GeslogService implements OnInit {
     public getStudLogins(matricule?: number | string): Observable<Information[]> {
         let url: string = env.api.getStudLogins;
         matricule = (!matricule) ? localStorage.getItem('userMatricule') : matricule;
+        if(!matricule)
+            return Observable.of(null);
         //let url:string  =  'logins/${matricule}';
         return this._http.get(`${this._urlToApi}/${url}/${matricule}`)
-            .map(res => res.json().data as Information[])
+            .map(res => {
+                console.log(": dazfz "+ res);
+                res.json().data as Information[]})
             .catch(err => this.handleError(err));
     }
 
