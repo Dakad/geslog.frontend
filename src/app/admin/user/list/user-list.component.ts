@@ -28,7 +28,7 @@ export class UserListComponent implements OnInit {
   datas: Information[];
   href;
    private filtres: string[] = [];
-  private firstname: string = 'firstname';
+  private firstName: string = 'firstName';
   private login: string = 'login';
   private matricule: string = 'matricule';
   private email: string = 'email';
@@ -109,11 +109,11 @@ export class UserListComponent implements OnInit {
     let compteur: number = 0;
     for (let i = 0; i < this.list.length; i++) {
       let ok: boolean = false;
-      ok = this.filtrer(this.list[i].firstname, this.filtres[this.firstname]) &&
+      ok = this.filtrer(this.list[i].firstName, this.filtres[this.firstName]) &&
         this.filtrer(this.list[i].login, this.filtres[this.login]) &&
         this.filtrer(this.list[i].matricule, this.filtres[this.matricule]) &&
         this.filtrer(this.list[i].email, this.filtres[this.email]) &&
-        this.filtrer(this.list[i].type, this.filtres[this.type]);
+        this.filtrer(this.list[i].type, this.filtres[this.type]) ;
       if (ok) {
         listR[compteur] = this.list[compteur];
         compteur++;
