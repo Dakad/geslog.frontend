@@ -18,7 +18,6 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import PageNotFound from './page-not-found.component';
 import FlashMsgComponent from './flash-msg.component';
-import { FileStreamComponent } from './test/file-stream/file-stream.component';
 
 
 @NgModule({
@@ -26,8 +25,8 @@ import { FileStreamComponent } from './test/file-stream/file-stream.component';
     AppComponent,
     LoginComponent,
     FlashMsgComponent,
-    PageNotFound,
-    FileStreamComponent
+    PageNotFound
+    
   ],
   imports: [
     BrowserModule,

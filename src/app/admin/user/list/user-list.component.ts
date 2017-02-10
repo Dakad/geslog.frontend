@@ -57,7 +57,7 @@ export class UserListComponent implements OnInit {
   }
 
   upload() {
-    console.log('Missing the upload function');
+     this.selectAction("upload");
   }
 
   checkAll(event) {
