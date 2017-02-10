@@ -5,9 +5,6 @@
 </div>
 <div class="jumbotron container panel panel-default ">
     <div *ngIf="hasSelectedAnUser && selectedAction == 'normal'" class="">
-        <pre>
-        {{selectedUser | json}}
-        </pre>
         <h2 style="text-align: center">{{selectedUser.lastName || "Utilisateur Inconu"}}</h2>
         <h3 class="col-lg-3 control-label"> <label> Prénom : {{selectedUser.firstName || "?"}} </label></h3>
         <h3 *ngIf="selectedUser.orientation" class="col-lg-3 control-label"> Orientation : {{selectedUser.orientation}}</h3>

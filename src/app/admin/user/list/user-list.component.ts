@@ -40,7 +40,7 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.geslog.getStudLogins().subscribe(res => this.datas = res);
+    this.geslog.getStudLogins().subscribe(res => {this.datas = res ;if(!res) this.datas = []; } );
   }
 
 
@@ -81,7 +81,7 @@ export class UserListComponent implements OnInit {
   loadDownloadFile() {
     let texteAImprimer: string = "";
     for (let i = 0; i < this.list.length; i++)
-      if (this.list[i].checked) {
+      if (this.list[i].checked && this.list[i].matricule) {
         this.geslog.getStudLogins(this.list[i].matricule);
         texteAImprimer += "Logins de l'utilisateur " + this.list[i].lastName + " : \n";
         for (let j = 0; j < this.datas.length; j++) {

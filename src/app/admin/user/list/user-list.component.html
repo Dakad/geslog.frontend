@@ -30,7 +30,7 @@
                 <tbody>
                     <tr *ngFor="let user of listeFiltre()" [class.selected]="selected && user.id === selected.id">
                         <td>
-                            <div class="checkbox">
+                            <div class="checkbox" *ngIf="user.matricule" >
                                 <label>
                                     <input type="checkbox" name="selections" value="user.checked"
                                     [(ngModel)]="user.checked" (change)="updateChecked(user, $event)" >
@@ -45,7 +45,7 @@
                         <td>
                             <a class="btn btn-success btn-xs" (click)="select(user)" (click)="selectAction('modifier')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             <a class="btn btn-danger btn-xs" (click)="select(user)" (click)="selectAction('suprimmer')"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                            <a class="btn btn-info btn-xs" (click)="select(user)" (click)="selectAction('logins')">Logins</a>
+                            <a class="btn btn-info btn-xs" (click)="select(user)" (click)="selectAction('logins')" *ngIf="user.matricule">Logins</a>
                             <!--<button  class="btn btn-danger btn-xs">Suprimmer</button>-->
                         </td>
 
