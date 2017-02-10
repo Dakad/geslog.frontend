@@ -29,12 +29,12 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let user of list" app-user-list-item [item]="user" [class.selected]="selected && user.id===selected.id " (click)="select(user) ">
-                    </tr>
                 </tbody>
             </table>
         </div>
         <div *ngIf="selectionDisponible ">
             <a id="dll " [href]="href " class="btn btn-success btn-lg pull-right " download="logins.txt ">Telecharger la selection</a>
+
         </div>
 
     </form>
