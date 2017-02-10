@@ -19,8 +19,8 @@ export const UserType = {
 
 
 export class User {
-    public firstname: string;
-    public name: string;
+    public firstName: string;
+    public lastName: string;
     public orientation: string;
     public email: string;
     public matricule: string;
@@ -30,17 +30,18 @@ export class User {
     public idProfile: number;
     public checked: boolean = false;
 
-    constructor(firstname?: string, name?: string, orientation?: string, email?: string, matricule?: string, type?: string,
+    constructor(firstname?: string, lastName?: string, orientation?: string, email?: string, matricule?: string, type?: string,
         login?: string, idProfile?: number) {
         this.checked = false;
-        this.firstname = firstname;
-        this.name = name;
+        this.firstName = firstname;
+        this.lastName = lastName;
         this.orientation = orientation;
         this.email = email;
         this.matricule = matricule;
         this.type = type;
         this.login = login;
         this.idProfile = idProfile;
+        this.profil = new Profil();
     }
 
     /**
@@ -48,7 +49,7 @@ export class User {
      */
     static extractFromRawData(raw: any): User {
         //console.log("test : " + raw.name + " :  " + raw.matricule );
-        const user: User = new User(raw.firstname, raw.name, raw.orientation, raw.email, raw.matricule, raw.type, raw.login, raw.idProfile);
+        const user: User = new User(raw.firstname, raw.lastName, raw.orientation, raw.email, raw.matricule, raw.type, raw.login, raw.idProfile);
         return user;
     }
 

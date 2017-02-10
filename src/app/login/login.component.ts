@@ -10,7 +10,7 @@ import { User, UserType } from '../dto/user';
 })
 export class LoginComponent implements OnInit {
   private types = UserType;
-  private data = { "username": "", "password": "", "matricule": "", "type": UserType.ADMIN };
+  private data = { "username": "", "password": "", "matricule": "", "type": 'ADMIN' };
 
   constructor(public _authService: AuthService, public router: Router) { }
 

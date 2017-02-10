@@ -5,7 +5,7 @@ export const env = {
     // url : 'http://192.168.1.29:3000/api',
     connect : 'connect',
     getStudLogins : 'logins',
-    createUser : 'user',
+    upsertUser : 'user',
     getUsers : 'users',
     importUsers : 'users',
     getProfils : 'profil',

@@ -33,12 +33,12 @@
                         <td>
                             <div class="checkbox">
                                 <label>
-     <input type="checkbox" name="selections" value="user.checked"
-     [(ngModel)]="user.checked" (change)="updateChecked(user, $event)" >
-   </label>
+                                    <input type="checkbox" name="selections" value="user.checked"
+                                    [(ngModel)]="user.checked" (change)="updateChecked(user, $event)" >
+                                </label>
                             </div>
                         </td>
-                        <td (click)="select(user)">{{user.name}}</td>
+                        <td (click)="select(user)">{{user.lastNname}}</td>
                         <td (click)="select(user)">{{user.login}}</td>
                         <td (click)="select(user)">{{user.matricule}}</td>
                         <td (click)="select(user)">{{user.email}}</td>

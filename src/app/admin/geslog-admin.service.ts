@@ -70,6 +70,11 @@ export class GeslogAdminService extends GeslogService {
         return this._http.post(`${this._urlToApi}/${url}`, profil)
             .map(res => res.json().data)
     }
+    public upsertUser(user: User) {
+        const url = env.api.upsertUser;
+        return this._http.post(`${this._urlToApi}/${url}`, user)
+            .map(res => res.json().data)
+    }
 
 
     public getAppliById(id: number | string): Observable<Appli> {

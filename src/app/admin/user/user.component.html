@@ -5,6 +5,9 @@
 </div>
 <div class="jumbotron container panel panel-default ">
     <div *ngIf="hasSelectedAnUser && selectedAction == 'normal'" class="">
+        <pre>
+        {{selectedUser | json}}
+        </pre>
         <h2 style="text-align: center">{{selectedUser.lastName || "Utilisateur Inconu"}}</h2>
         <h3 class="col-lg-3 control-label"> <label> Prénom : {{selectedUser.firstName || "?"}} </label></h3>
         <h3 *ngIf="selectedUser.orientation" class="col-lg-3 control-label"> Orientation : {{selectedUser.orientation}}</h3>
@@ -100,24 +103,18 @@
         </form>
     </div>
     <div *ngIf="!hasSelectedAnUser && isCreating && selectedAction == 'modifier'" class="">
-        <form class="form-horizontal" (ngSubmit)="addUser(newUser)">
+        <form class="form-horizontal" (ngSubmit)="addUser()">
             <h2 style="text-align: center">{{newUser.lastName || "Nouvel Utilisateur"}}</h2>
             <div class="form-group">
                 <label for="name" class="col-lg-4 control-label">Nom :</label>
                 <div class="col-lg-6">
-                    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="newUser.lastName" required>
+                    <input type="text" class="form-control" id="name" name="lastName" [(ngModel)]="newUser.lastName" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="firstname" class="col-lg-4 control-label">Prénom:</label>
                 <div class="col-lg-6">
-                    <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="newUser.firstName" required>
-                </div>
-            </div>
-            <div *ngIf="newUser.type == 'STUD' " class="form-group">
-                <label for="orientation" class="col-lg-4 control-label">Orientation :</label>
-                <div class="col-lg-6">
-                    <input type="text" class="form-control" id="orientation" name="orientation" [(ngModel)]="newUser.orientation">
+                    <input type="text" class="form-control" id="firstname" name="firstName" [(ngModel)]="newUser.firstName" required>
                 </div>
             </div>
             <div class="form-group">
@@ -127,16 +124,22 @@
                 </div>
             </div>
             <div *ngIf="newUser.type == 'STUD' " class="form-group">
+                <label for="orientation" class="col-lg-4 control-label">Orientation :</label>
+                <div class="col-lg-6">
+                    <input type="text" class="form-control" id="orientation" name="orientation" [(ngModel)]="newUser.orientation">
+                </div>
+            </div>
+            <div *ngIf="newUser.type == 'STUD' " class="form-group">
                 <label for="matricule" class="col-lg-4 control-label">Matricule :</label>
                 <div class="col-lg-6">
-                    <input type="text" class="form-control" id="matricule" name="matricule" [(ngModel)]="newUser.matricule">
+                    <input type="number" class="form-control" id="matricule" name="matricule" [(ngModel)]="newUser.matricule">
                 </div>
             </div>
             <div class="form-group">
                 <label for="type" class="col-lg-4 control-label">Type :</label>
                 <div class="col-lg-6">
                     <select class="form-control" name="type" [(ngModel)]="newUser.type" id="type" required>
-                                <option  *ngFor="let t of types"  [ngValue]=t >{{typesValues[t]}}</option>
+                                <option  *ngFor="let t of types" [disabled]="t==ADMIN" [ngValue]=t >{{typesValues[t]}}</option>
                     </select>
                 </div>
             </div>

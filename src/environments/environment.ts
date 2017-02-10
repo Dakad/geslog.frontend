@@ -11,8 +11,10 @@ export const env = {
     connect : '/api-lo/',
     getStudLogins : '/api-logins.json',
     getProfils : '/api-profils-list-res.json',
-    getUsers : '/api-users-list-res.json',
     upsertProfil : '/profil/',
+    
+    upsertUser : '',
+    getUsers : '/api-users-list-res.json',
 
     assignApp : '/access',
     getApplis : '/api-applis-list-res.json',
