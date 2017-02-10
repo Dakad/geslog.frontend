@@ -50,7 +50,7 @@ export class UserComponent implements OnInit {
             for (let j = 0; j < this.profils.length; j++)
                 if (this.users[i].idProfile == this.profils[j].id)
                     this.users[i].profil = this.profils[j];
-        this.selectedUser = (event) ? event : new User("", "", "", "", "", "", "", 0);
+        this.selectedUser = (event) ? event : User.extractFromRawData({});
         this.hasSelectedAnUser = true;
         this.selectedAction = "normal";
         this.isCreating = false;
@@ -96,11 +96,15 @@ export class UserComponent implements OnInit {
         this.newUser = User.extractFromRawData({});
     }
     modifUser() {
+        console.log(this.selectedUser);
+        this._geslog.upsertUser(this.selectedUser)
+                    .subscribe(data => alert('User updated ! Refresh to see on the list'));
     }
 
     addUser(user: User) {
         console.log(this.newUser);
-        this._geslog.upsertUser(this.newUser).subscribe(data => alert('User created ! Refresh to see on the list'));
+        this._geslog.upsertUser(this.newUser)
+                    .subscribe(data => alert('User created ! Refresh to see on the list'));
     }
 
 
