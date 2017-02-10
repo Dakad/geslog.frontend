@@ -1,65 +1,43 @@
 <div class="container">
-    <<<<<<< HEAD <h2 class="">
+    <h2 class="">
         <small class="pull-left">
           <button class="btn btn-primary" title="Ajouter un utilisateur" (click)=create()>
           <i class="fa fa-plus" aria-hidden="true"></i>  
           </button>
         </small> &nbsp;Liste des utilisateurs
         <small class="pull-right">
-    <button class="btn btn-success" title="Upload etudiants" (click)=upload()>
-      <i class="fa fa-upload" aria-hidden="true"></i>
-          Upload
-      </button>
-  </small>
-        </h2>
-        <br>
-        <form class="form-horizontal" (ngSubmit)="formSubmit()">
-            <div class="form-group">
-                <table class="table table-striped table-hover ">
-                    <thead>
-                        <tr>
-                            <th> <input type="checkbox" name="selectAll" (change)="checkAll($event)"></th>
-                            <th>Nom</th>
-                            <th>Login</th>
-                            <th>Matricule</th>
-                            <th>Email</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let user of list" [class.selected]="selected && user.id === selected.id">
-                            <td>
-                                <div class="checkbox">
-                                    <label>
-     <input type="checkbox" name="selections" value="user.checked"
-     [(ngModel)]="user.checked" (change)="updateChecked(user, $event)" >
-   </label>
-                                </div>
-                            </td>
-                            <td (click)="select(user)">{{user.name}}</td>
-                            <td (click)="select(user)">Column content</td>
-                            <td (click)="select(user)">Column content</td>
-                            <td (click)="select(user)">Column content</td>
-                            <td>
-                                <a class="btn btn-success btn-xs" (click)="select(user)" (click)="selectAction('modifier')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                <a class="btn btn-danger btn-xs" (click)="select(user)" (click)="selectAction('modifier')"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                <a class="btn btn-info btn-xs" (click)="select(user)" (click)="selectAction('logins')">Logins</a>
-                                <a class="btn btn-warning btn-xs" (click)="select(user)" (click)="selectAction('acess')">Acess</a>
-                                <!--<button  class="btn btn-danger btn-xs">Suprimmer</button>-->
-                            </td>
+            <button class="btn btn-success" title="Upload etudiants" (click)=upload()>
+            <i class="fa fa-upload" aria-hidden="true"></i>
+                Upload
+            </button>
+        </small>
+    </h2>
+    <br>
 
-                            <!-- Buttons : Modifer , Génerer feuille de log-in , Voir acess , Suprimmer  -->
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div *ngIf="selectionDisponible">
-                <a id="dll" [href]="href" class="btn btn-success btn-lg pull-right" download="logins.txt">
-          Telecharger la selection
-    </a>
-            </div>
+    <form class="form-horizontal" (ngSubmit)="formSubmit()">
+        <div class="form-group">
+            <table class="table table-striped table-hover ">
+                <thead>
+                    <tr>
+                        <th> <input type="checkbox" name="selectAll" (change)="checkAll($event)"></th>
+                        <th>Nom</th>
+                        <th>Login</th>
+                        <th>Matricule</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of list" app-user-list-item [item]="user" [class.selected]="selected && user.id===selected.id " (click)="select(user) ">
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="selectionDisponible ">
+            <a id="dll " [href]="href " class="btn btn-success btn-lg pull-right " download="logins.txt ">Telecharger la selection</a>
+        </div>
 
-        </form>
+    </form>
 
 </div>
-<br/>
+<br>

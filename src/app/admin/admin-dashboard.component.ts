@@ -4,6 +4,7 @@ import { GeslogAdminService } from './geslog-admin.service';
 
 import Appli from '../dto/appli';
 import Profil from '../dto/profil';
+import { User } from '../dto/user';
 
 
 @Component({
@@ -20,10 +21,8 @@ import Profil from '../dto/profil';
     </div>
     
     <div class="row">
-        <app-user-list [list]=profils [mode]=componentMode> </app-user-list>
+        <app-user-list [list]=users [mode]=componentMode> </app-user-list>
     </div>
-
-
 
 
   `
@@ -31,6 +30,7 @@ import Profil from '../dto/profil';
 export class AdminDashboardComponent implements OnInit {
   private applis: Appli[];
   private profils:Profil[];
+  private users:User[];
   private componentMode:string = 'link';
 
   constructor(private _geslog: GeslogAdminService) { }
@@ -38,6 +38,7 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit() {
     this._geslog.listApplis().subscribe(data => this.applis = data);
     this._geslog.listProfils().subscribe(data => this.profils = data);
+    this._geslog.listUsers().subscribe(data => this.users = data);
   }
 
 

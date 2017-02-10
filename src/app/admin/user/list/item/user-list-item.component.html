@@ -1,0 +1,19 @@
+<td>
+    <div class="checkbox">
+        <label>
+                <input type="checkbox" name="selections" value="user.checked" [(ngModel)]="user.checked" (change)="updateChecked(user, $event)" >
+            </label>
+    </div>
+</td>
+<td>{{user.lastName | uppercase }}, {{user.firstName}}</td>
+<td>{{user.login}}</td>
+<td>{{user.matricule || 'Non défini'}}</td>
+<td>{{user.email || 'Non défini'}}</td>
+<td>
+    <a class="btn btn-success btn-xs" title="Modifier" (click)="selectAction('modifier')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+    <a class="btn btn-danger btn-xs" title="Suppriner" (click)="selectAction('modifier')"><i class="fa fa-trash" aria-hidden="true"></i></a>
+    <a class="btn btn-info btn-xs" title="Generer feuille de logins" (click)="selectAction('logins')"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+    <!--<button  class="btn btn-danger btn-xs">Suprimmer</button>-->
+</td>
+
+<!-- Buttons : Modifer , Génerer feuille de log-in , Voir acess , Suprimmer  -->

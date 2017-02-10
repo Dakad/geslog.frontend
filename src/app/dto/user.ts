@@ -12,54 +12,52 @@ export const UserType = {
 
 
 export class User {
-    private _firstname: string;
-    private _name: string;
+    private _firstName: string;
+    private _lastName: string;
     private _orientation: string;
     private _email: string;
     private _matricule: string;
     private _type: string;
     private _login: string;
     private _profil: Profil;
-    private _idProfile: number;
     private _checked: boolean = false;
 
-    constructor(firstname?: string, name?: string, orientation?: string, email?: string, matricule?: string, type?: string,
+    constructor(firstName?: string, lastName?: string, orientation?: string, email?: string, matricule?: string, type?: string,
         login?: string, idProfile?: number) {
         this._checked = false;
-        this._firstname = firstname;
-        this._name = name;
+        this._firstName = firstName;
+        this._lastName = lastName;
         this._orientation = orientation;
         this._email = email;
         this._matricule = matricule;
         this._type = type;
         this._login = login;
-        this._idProfile = idProfile;
+        this._profil = new Profil(null,idProfile);
     }
 
     /**
      * extractFromRawData
      */
     static extractFromRawData(raw: any): User {
-        //console.log("test : " + raw.name + " :  " + raw.matricule );
-        const user: User = new User(raw.firstname, raw.name, raw.orientation, raw.email, raw.matricule, raw.type, raw.login, raw.idProfile);
+        const user: User = new User(raw.firstName, raw.lastName, raw.orientation, raw.email, raw.matricule, raw.type, raw.login);
         return user;
     }
 
 
-    public get firstname(): string {
-        return this._firstname;
+    public get firstName(): string {
+        return this._firstName;
     }
 
-    public set firstname(v: string) {
-        this._firstname = v;
+    public set firstName(v: string) {
+        this._firstName = v;
     }
 
-    public get name(): string {
-        return this._name;
+    public get lastName(): string {
+        return this._lastName;
     }
 
-    public set name(v: string) {
-        this._name = v;
+    public set lastName(v: string) {
+        this._lastName = v;
     }
 
     public get orientation(): string {
@@ -99,27 +97,25 @@ export class User {
     public get login(): string {
         return this._login;
     }
-
     public set login(v: string) {
         this._login = v;
     }
 
 
-
     public get profil(): Profil {
         return this._profil;
     }
-
     public set profil(v: Profil) {
         this._profil = v;
     }
 
-    public get idProfile(): number {
-        return this._idProfile;
+
+    public get profilId(): number {
+        return this.profil.id;
     }
 
-    public set uiProfile(v: number) {
-        this._idProfile = v;
+    public set profilId(v: number) {
+        this.profil.id = v;
     }
 
     public setProfil(v: Profil) {

@@ -3,6 +3,7 @@ import { Headers, Http } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import { User, UserType } from '../dto/user';
+import { env } from '../../environments/environment';
 
 
 import 'rxjs/add/observable/of';
@@ -11,23 +12,23 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export default class AuthService {
+  private _apiUrl: string = env.api.url;
   private _redirectUrl: string;
-  // private _apiUrl: string = 'http://ip_api';
-  private _apiUrl: string = 'app/mocks/';
 
 
   constructor(private _http: Http) { }
 
   public login(inputData): Observable<any> {
     // const url = 'connect';
-    const url = 'api-user-connect-res.json';
-    // return this._http.post(`${this._apiUrl}/${url}`, inputData)
-    return this._http.get(`${this._apiUrl}/${url}`, inputData)
+    const url = env.api.connect;
+    return this._http.post(`${this._apiUrl}/${url}`, inputData)
       .map(res => {
         const data = res.json().data;
+        console.log(data);
+        data.type = data.type.toLowerCase();
         localStorage.setItem('token', data.token);
         localStorage.setItem('type', data.type);
-        if (data.type === 'STUD') {
+        if (data.type === 'stud') {
           localStorage.setItem('studMatricule', data.Matricule);
         }
         return data;

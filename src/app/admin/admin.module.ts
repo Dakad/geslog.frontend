@@ -12,6 +12,7 @@ import { MultiSelectComponent } from './shared/multi-select/multi-select.compone
 
 import { AdminComponent } from './admin.component';
 import { AdminDashboardComponent } from './admin-dashboard.component';
+
 import { ProfilComponent } from './profil/profil.component';
 import { ProfilAddComponent } from './profil/add/profil-add.component';
 import { ProfilListComponent } from './profil/list/profil-list.component';
@@ -23,6 +24,7 @@ import { AppliListComponent } from './appli/list/appli-list.component';
 import { UserComponent } from './user/user.component';
 import { UserAddComponent } from './user/add/user-add.component';
 import { UserListComponent } from './user/list/user-list.component';
+import { UserListItemComponent } from './user/list/item/user-list-item.component';
 
 
 
@@ -40,7 +42,7 @@ import { UserListComponent } from './user/list/user-list.component';
     AdminComponent, AdminDashboardComponent,
     ProfilComponent, ProfilAddComponent, ProfilListComponent,
     AppliComponent, AppliAddComponent, AppliListComponent,
-    UserAddComponent, UserComponent, UserListComponent
+    UserAddComponent, UserComponent, UserListComponent,UserListItemComponent
   ],
   providers: [GeslogAdminService,GeslogService],
 })

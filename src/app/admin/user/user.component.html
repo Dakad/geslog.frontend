@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-5">
-        <app-user-list [list]="users" (select)=onUpsert($event) (selectAction)=onUpsertAction($event)></app-user-list>
+        <app-user-list [list]=users (select)=onUpsert($event) (selectAction)=onUpsertAction($event)></app-user-list>
     </div>
 </div>
 <div class="jumbotron container panel panel-default ">

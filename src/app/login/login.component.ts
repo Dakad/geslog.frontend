@@ -29,7 +29,14 @@ export class LoginComponent implements OnInit {
         user.type += `/${user.matricule}`;
       this.router.navigate(['/' + user.type]);
     });
+  }
 
+  /**
+   * logout
+   */
+  public logout() {
+    this._authService.logout();
+    this.router.navigateByUrl('/');
   }
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import Profil from '../../dto/profil';
 import Appli from '../../dto/appli';
@@ -49,8 +50,7 @@ export class ProfilComponent implements OnInit {
     } else {
       profil = new Profil();
       this._geslog.listApplis()
-        .subscribe(apps => {
-
+        .subscribe(apps => {  
           profil.resetApps();
           apps.forEach((app) => profil.addApp(app));
           this.selectedProfil = profil;
@@ -61,7 +61,7 @@ export class ProfilComponent implements OnInit {
 
   onUpsert(profil: Profil) {
     console.log(profil);
-    // this._geslog.upsert(profil);
+    this._geslog.upsertProfil(profil).subscribe(msg => alert(msg));
   }
 
 

@@ -35,6 +35,7 @@ export class ProfilListComponent implements OnInit {
 
   constructor() {
     this.selectRequest = new EventEmitter<Profil>();
+    this.list = [];
   }
 
   ngOnInit() { console.log(this.list); }

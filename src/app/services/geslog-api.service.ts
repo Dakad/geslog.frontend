@@ -1,61 +1,67 @@
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 import { Injectable, OnInit } from '@angular/core';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
+import { env } from '../../environments/environment';
 
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
+import { User } from '../dto/user';
 
 
 @Injectable()
 export class GeslogService implements OnInit {
-    protected _urlToApi: string = 'app/mocks';
+    protected _urlToApi: string = env.api.url;
     protected _head: Headers = new Headers({ 'Content-Type': 'application/json' });
 
     constructor(protected _http: Http, protected _opts: RequestOptions) {
+        this._head.append('Accept', 'application/json');  
+     }
 
-    }
-
-    ngOnInit() {
-        this.getToken();
-
-    }
-
-    private getToken() {
-        console.log('Get getToken')
-        this._http.post(`${this._urlToApi}/auth/`, {}, this._opts).map(res => res.json());
-    }
-
+    ngOnInit() { }
 
     /**
      * Allow the std to get his logins
      */
-    public getStudLogins(matricule?: number | string) {
+    public getStudLogins(matricule?: number | string): Observable<User[]> {
+        let url: string = env.api.getStudLogins;
         matricule = (!matricule) ? localStorage.getItem('userMatricule') : matricule;
-        let url:string  =  'api-logins.json';
-         //let url:string  =  'logins/${matricule}';
-       return this._http.get(`${this._urlToApi}/${url}`).map(res => res.json().data);
-    
-       //return this._http.get('app/mocks/api-logins.json').map(res => res.json().data);
-       
+        //let url:string  =  'logins/${matricule}';
+        return this._http.get(`${this._urlToApi}/${url}/${matricule}`)
+            .map(res => res.json().data as any[])
+            .map(data => data)
+            .catch(err => this.handleError(err));
     }
 
 
-    private extractData(res: Response) {
-        const body = res.json();
-        return body.data || {};
+
+    protected extractData(res: Response, extractFct: Function,returnType:any) {
+        const data = res.json().data;
+        let extract;
+        if (Array.isArray(data)) {
+            extract = [];
+            let tmpType = {};
+            data.forEach((val, i) => {
+                extractFct.call(returnType, val);
+                extract.push(returnType);
+            });
+        } else {
+            extractFct.call(extract, data);
+        }
+        return extract;
     }
 
-    private handleError(error: Response | any) {
+
+    protected handleError(error: Response | any)  {
         let errMsg: string;
         if (error instanceof Response) {
             const body = error.json() || '';
-            const err = body.error || JSON.stringify(body);
-            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+            const err = body.err || JSON.stringify(body);
+            errMsg = `Error ${error.status} (${error.statusText || ''})  ${err.status} -> ${err.message}`;
         } else {
             errMsg = error.message ? error.message : error.toString();
         }
         console.error(errMsg);
-        return Observable.throw(errMsg);
+        return Observable.of(errMsg) as Observable<any>;
     }
 }
